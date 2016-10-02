@@ -1,0 +1,4 @@
+{
+  "plugins": ["react-hot-loader/babel"], // react-hot is like browser sync and babel loads jsx and es6-7
+  "presets": ["es2015", "react"]
+}
