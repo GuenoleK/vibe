@@ -9,11 +9,6 @@ class Home extends Component {
       <div id='cards-container'>
         <div data-focus='card'>
           <Card>
-            <CardHeader
-              title="URL Avatar"
-              subtitle="Subtitle"
-              avatar=""
-              />
             <CardMedia
               overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
               >
@@ -35,11 +30,6 @@ class Home extends Component {
 
         <div data-focus='card'>
           <Card>
-            <CardHeader
-              title="URL Avatar"
-              subtitle="Subtitle"
-              avatar=""
-              />
             <CardMedia
               overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
               >
@@ -61,11 +51,6 @@ class Home extends Component {
 
         <div data-focus='card'>
           <Card>
-            <CardHeader
-              title="URL Avatar"
-              subtitle="Subtitle"
-              avatar=""
-              />
             <CardMedia
               overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
               >
@@ -87,11 +72,6 @@ class Home extends Component {
 
         <div data-focus='card'>
           <Card>
-            <CardHeader
-              title="URL Avatar"
-              subtitle="Subtitle"
-              avatar=""
-              />
             <CardMedia
               overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
               >
