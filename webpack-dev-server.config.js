@@ -40,8 +40,12 @@ const config = {
       {
         // React-hot loader and
         test: /\.js$/, // All .js files
-        loaders: ['babel-loader'], 
+        loaders: ['babel-loader'],
         exclude: [nodeModulesPath],
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass']
       },
     ],
   },

@@ -1,0 +1,9 @@
+#cards-container {
+  padding: 50;
+  display: flex;
+  justify-content: space-between;
+
+  [data-focus="card"] {
+    padding: 10px;
+  }
+}
