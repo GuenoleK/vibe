@@ -1,14 +1,15 @@
 {
   "name": "vibe-music",
   "version": "0.0.1",
-  "description": "Sample project that uses Material-UI",
+  "description": "vibe-music",
   "repository": {
     "type": "git",
     "url": "https://github.com/GuenoleK/vibe.git"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
-    "build": "webpack --config webpack-production.config.js --progress --colors"
+    "build": "webpack --config webpack-production.config.js --progress --colors",
+    "dev": "nodemon ./api/index.js"
   },
   "private": true,
   "devDependencies": {
@@ -29,6 +30,12 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "es6-promise": "^4.0.5",
+    "express": "^4.14.0",
+    "isomorphic-fetch": "^2.2.1",
+    "material-design-lite": "^1.2.1",
     "material-ui": "^0.15.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
