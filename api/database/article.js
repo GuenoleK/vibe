@@ -1,10 +1,13 @@
 import {dbSetup, sequelizer} from './index';
 import Sequelize from 'sequelize';
-import {User} from './user';
 
 export const Article = dbSetup.define(
   'article',
   {
+    corpus: {
+      type: sequelizer.STRING,
+      allowNull: true
+    },
     description: {
       type: sequelizer.STRING,
       allowNull: true
@@ -21,15 +24,13 @@ export const Article = dbSetup.define(
       allowNull: true
     },
     file: {
-      type: sequelizer.BLOB
+      type: sequelizer.BLOB,
+      allowNull: true
     },
     audio: {
       type: sequelizer.BLOB,
       allowNull: true
-    },
-    author: {
-      type: sequelizer.BLOB
     }
-  }
+  },
+  {timestamps: false}
 );
-Article.belongsTo(User);

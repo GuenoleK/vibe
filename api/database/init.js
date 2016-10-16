@@ -1,7 +1,9 @@
 import {dbSetup} from './index';
 import {createUser} from './helpers/user-helpers';
 import {createRoles} from './helpers/role-helpers';
+import {createArticle} from './helpers/article-helpers';
 import {Role} from './role';
+import faker from 'faker';
 
 /** Create the database. */
 async function initDb() {
@@ -26,6 +28,7 @@ async function initDb() {
         // Populate the database with fake data
         createRoles();
         createUser({firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'});
+        createArticle({corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()});
     // }
 }
 
