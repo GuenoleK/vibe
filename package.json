@@ -8,11 +8,12 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
+    "start-api": "better-npm-run start-api",
     "build": "webpack --config webpack-production.config.js --progress --colors",
     "build-api": "gulp",
     "db-init": "better-npm-run db-init",
-    "db-init:prod": "better-npm-run db-init-prod",
-    "dev": "nodemon ./api/index.js"
+    "db-insert": "better-npm-run db-insert",
+    "db-init:prod": "better-npm-run db-init-prod"
   },
   "betterScripts": {
     "db-init": {
@@ -21,8 +22,20 @@
         "DB_ENV": "dev"
       }
     },
+    "db-insert": {
+      "command": "cd build && node ./api/database/insertions.js",
+      "env": {
+        "DB_ENV": "dev"
+      }
+    },
     "db-init-prod": {
-      "command": "cd api && node ./database/init.js",
+      "command": "cd build && node ./api/database/init.js",
+      "env": {
+        "DB_ENV": "prod"
+      }
+    },
+    "start-api": {
+      "command": "cd build && node ./api/index.js",
       "env": {
         "DB_ENV": "prod"
       }

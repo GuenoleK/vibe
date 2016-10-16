@@ -1,5 +1,5 @@
 import {dbSetup} from './index';
-import {createUser} from './helpers/user-helpers';
+import {createUser, createUserAndArticle} from './helpers/user-helpers';
 import {createRoles} from './helpers/role-helpers';
 import {createArticle} from './helpers/article-helpers';
 import {Role} from './role';
@@ -27,8 +27,11 @@ async function initDb() {
     // if (process.env.DB_ENV !== 'prod') {
         // Populate the database with fake data
         createRoles();
-        createUser({firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'});
-        createArticle({corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()});
+        // createUser({firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'})
+        createUserAndArticle({
+          firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'
+        })
+        // createArticle({corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()}, 1)
     // }
 }
 
