@@ -1,12 +1,14 @@
-import {sequelize, User} from './index';
-import faker from 'faker';
+import {dbSetup} from './index';
+import {createUser} from './helpers/user-helpers';
+import {createRoles} from './helpers/role-helpers';
+import {Role} from './role';
 
 /** Create the database. */
 async function initDb() {
 
     // Creates the file.
     try {
-        await sequelize.authenticate();
+        await dbSetup.authenticate();
         console.log('Connection to the database successful.');
     } catch (error) {
         console.log(`Error while trying to connect to the database: ${error}`);
@@ -14,7 +16,7 @@ async function initDb() {
 
     // Syncs the model
     try {
-        await sequelize.sync({ force: true });
+        await dbSetup.sync({ force: true });
         console.log('Database sync sucessful');
     } catch (error) {
         console.log(`Error while trying to sync the model with the database : ${error}`);
@@ -22,19 +24,8 @@ async function initDb() {
 
     // if (process.env.DB_ENV !== 'prod') {
         // Populate the database with fake data
-        try {
-            let data = [];
-            for (let i = 0; i < 10; i++) {
-                data.push({
-                    firstName: faker.name.firstName(),
-                    lastName: faker.name.lastName()
-                });
-            }
-            await User.bulkCreate(data);
-            console.log('10 articles successfully inserted.');
-        } catch (error) {
-            console.log(`Error while trying to insert an article in the database : ${error}`);
-        }
+        createRoles();
+        createUser({firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'});
     // }
 }
 
