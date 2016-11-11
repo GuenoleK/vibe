@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import 'material-design-lite/material';
-import 'material-design-lite/material.css';
 
 class Layout extends Component {
 
   render() {
     return (
       <div className="demo-layout-waterfall mdl-layout mdl-js-layout">
-        <header className="mdl-layout__header mdl-layout__header--scroll mdl-color--primary mdl-layout__header--waterfall">
+        <header className="mdl-layout__header mdl-layout__header--scroll mdl-color--pink mdl-layout__header--waterfall">
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title">Vibe</span>
             <div className="mdl-layout-spacer"></div>
@@ -24,7 +23,6 @@ class Layout extends Component {
           </div>
 
           <div className="mdl-layout__header-row">
-            <div className="mdl-layout-spacer"></div>
             <nav className="mdl-navigation">
               <a className="mdl-navigation__link" href="">Link</a>
               <a className="mdl-navigation__link" href="">Link</a>
@@ -34,7 +32,7 @@ class Layout extends Component {
           </div>
         </header>
         <div className="mdl-layout__drawer">
-          <span className="mdl-layout-title">Title</span>
+          <span className="mdl-layout-title">Menu</span>
           <nav className="mdl-navigation">
             <a className="mdl-navigation__link" href="">Accueil</a>
             <a className="mdl-navigation__link" href="">Piano</a>
