@@ -1,0 +1,41 @@
+.global-layout {
+
+    .global-appbar {
+        position: fixed;
+    }
+
+    .separator {
+        height: 64px;
+    }
+
+    .add-button {
+        margin: 0px;
+        bottom: 20px;
+        right: 20px;
+        left: auto;
+        top: auto;
+        position: fixed;
+        padding-left: 0px;
+        -webkit-transform: scale(0,0);
+        transform: scale(0);
+    }
+
+    .show {
+        -webkit-animation: bummer 0.5s;
+        animation: popup 0.5s;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+    }
+
+    @-webkit-keyframes bummer {
+        100% {
+            -webkit-transform: scale(1,1);
+        }
+    }
+
+    @keyframes popup {
+        100% {
+            transform: scale(1,1);
+        }
+    }
+}

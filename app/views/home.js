@@ -8,7 +8,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <RaisedButton label='server action' primary={true} style={{margin: '30px'}} onClick={() => serverCaller()} />
+        <RaisedButton label='server action' secondary={true} style={{margin: '30px'}} onClick={() => serverCaller()} />
         <div id='cards-container'>
           <div data-focus='card'>
             <Card>
