@@ -15,6 +15,10 @@ export default {
         {
             path: 'edit-article/:id',
             component: (props) => <ArticleEditionView {...props} />
+        },
+        {
+            path: 'tutorial/:id',
+            component: (props) => <HomeView {...props} />
         }
     ]
 };
