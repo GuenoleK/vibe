@@ -4,7 +4,8 @@ export class ArticleForm extends PureComponent {
 
     render() {
         return(
-            <div>Hello</div>
+            <div>
+            </div>
         )
     }
 }

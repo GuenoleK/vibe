@@ -36,9 +36,15 @@ export class Layout extends PureComponent {
         return capitalize(i18n.t(pathArray[1]));
     }
 
+    setMenuItemStyle(name) {
+        return this.checkMenuItem(name) ? {
+            backgroundColor: 'rgba(0,0,0,0.0980392)'
+        } : null;
+    }
+
     handleItemClick(path, ref) {
         this.toggleDrawer();
-        if(this.refs[ref].focusState !== 'focused') {
+        if(this.refs[ref].props.focusState !== 'focused') {
             switch (path) {
                 case '/':
                     this.props.router.push(path);
@@ -58,6 +64,14 @@ export class Layout extends PureComponent {
 
     toggleDrawer = () => this.setState({drawerIsOpen: !this.state.drawerIsOpen});
 
+    handleEditButtonClick = () => {
+        // Here we save an article, we get its id then we got on the edit page
+        // gotta call a service here
+        let id;
+        // id = this.props.saveArticle();
+        this.props.router.push(!id ? `edit-article/1` : `edit-article/${id}`);
+    }
+
     render() {
         const {isShown, buttonClassName, drawerIsOpen} = this.state;
         return (
@@ -73,19 +87,19 @@ export class Layout extends PureComponent {
                 <Drawer docked={false} width={300} open={drawerIsOpen} onRequestChange={(drawerIsOpen) => this.setState({drawerIsOpen})}>
                     <AppBar
                         style={{position: 'fixed'}}
-                        iconElementLeft={<IconButton iconClassName='material-icons'>close</IconButton>}
+                        iconElementLeft={<IconButton iconClassName='material-icons'>arrow_back</IconButton>}
                         onTitleTouchTap={this.toggleDrawer}
                         onLeftIconButtonTouchTap={this.toggleDrawer}
                         className='menu-appbar'
                         title='Menu'
                     />
                     <div className='separator' />
-                    <MenuItem focusState={this.checkMenuItem('Accueil') ? 'keyboard-focused' : 'none'} ref='menuItemHome'onTouchTap={() => this.handleItemClick('/', 'menuItemHome')} primaryText='Accueil' leftIcon={<FontIcon className='material-icons'>home</FontIcon>}/>
-                    <MenuItem focusState={this.checkMenuItem('Tutoriel') ? 'keyboard-focused' : 'none'} ref='menuItemTuto' onTouchTap={() => this.handleItemClick('/tutorial', 'menuItemTuto')} primaryText='Tutoriels' leftIcon={<FontIcon className='material-icons'>class</FontIcon>}/>
+                    <MenuItem style={this.setMenuItemStyle('Accueil')} focusState={this.checkMenuItem('Accueil') ? 'focused' : 'none'} ref='menuItemHome'onTouchTap={() => this.handleItemClick('/', 'menuItemHome')} primaryText='Accueil' leftIcon={<FontIcon className='material-icons'>home</FontIcon>}/>
+                    <MenuItem style={this.setMenuItemStyle('Tutoriel')} focusState={this.checkMenuItem('Tutoriel') ? 'focused' : 'none'} ref='menuItemTuto' onTouchTap={() => this.handleItemClick('/tutorial', 'menuItemTuto')} primaryText='Tutoriels' leftIcon={<FontIcon className='material-icons'>class</FontIcon>}/>
                 </Drawer>
                 <div className='separator' />
                 {this.props.children}
-                <FloatingActionButton ref='createFAB' className={buttonClassName} secondary={true}><ContentAdd /></FloatingActionButton>
+                <FloatingActionButton onClick={this.handleEditButtonClick} ref='createFAB' className={buttonClassName} secondary={true}><ContentAdd /></FloatingActionButton>
                 {!isShown ? this.showFAB : null}
             </div>
         )

@@ -6,7 +6,8 @@ export class ArticleEditionView extends PureComponent {
         console.log(this);
         return(
             <div>
-                Hello world!
+                <div className='mini-separator'/>
+                Hellow
             </div>
         )
     }
