@@ -1,9 +1,11 @@
 import React, {PureComponent} from 'react';
-import {AppBar, FloatingActionButton } from 'material-ui';
-import {ContentAdd} from 'material-ui/svg-icons';
+import {AppBar, FloatingActionButton, IconButton} from 'material-ui';
+import {ContentAdd, HardwareKeyboardBackspace} from 'material-ui/svg-icons';
+import {capitalize} from 'lodash';
 import 'material-design-lite/material';
+import i18n from 'i18next';
 
-class Layout extends PureComponent {
+export class Layout extends PureComponent {
 
     state = {
         isShown: false,
@@ -14,6 +16,7 @@ class Layout extends PureComponent {
         this.showFAB();
     }
 
+    // This will give or remove animation class on the add button
     showFAB = () => {
         const {isShown, buttonClassName} = this.state;
         if (this.refs.createFAB.props.className === 'add-button') {
@@ -23,11 +26,18 @@ class Layout extends PureComponent {
         }
     }
 
+    // This will return the correct title
+    getTitle(pathname) {
+        const pathArray = pathname.split("/");
+        return capitalize(i18n.t(pathArray[1]));
+    }
+
     render() {
         const {isShown, buttonClassName} = this.state;
+        console.log('Layout Component :', this.props)
         return (
             <div className='global-layout'>
-                <AppBar style={{position: 'fixed'}} className='global-appbar' title="Vibe" iconClassNameRight="muidocs-icon-navigation-expand-more" />
+            <AppBar style={{position: 'fixed'}} className='global-appbar' title={this.getTitle(this.props.location.pathname)}/>
                 <div className='separator' />
                 {this.props.children}
                 <FloatingActionButton ref='createFAB' className={buttonClassName} secondary={true}><ContentAdd /></FloatingActionButton>
@@ -36,5 +46,3 @@ class Layout extends PureComponent {
         )
     }
 }
-
-export default Layout;

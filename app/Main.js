@@ -9,7 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {AppBar, FontIcon, IconMenu, IconButton, MenuItem} from 'material-ui';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import Layout from './components/layout';
+import {Layout} from './components/layout';
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -23,9 +23,7 @@ class Main extends Component {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
-                    <Layout>
-                        {this.props.children}
-                    </Layout>
+                    {this.props.children}
                 </div>
             </MuiThemeProvider>
         );

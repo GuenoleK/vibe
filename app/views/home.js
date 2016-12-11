@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import {FlatButton, RaisedButton} from 'material-ui';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import serverCaller from '../services/test_service';
+import {Link} from 'react-router';
 
-class Home extends Component {
+export class HomeView extends Component {
 
   render() {
     return (
       <div>
-        <RaisedButton label='server action' secondary={true} style={{margin: '30px'}} onClick={() => serverCaller()} />
+      <RaisedButton label='server action' secondary={true} style={{margin: '30px'}} onClick={() => serverCaller()} />
+        <RaisedButton label='Test edit' secondary={true} style={{margin: '30px'}} onClick={() => this.props.router.push('edit-article/1')}/>
         <div id='cards-container'>
           <div data-focus='card'>
             <Card>
@@ -98,5 +100,3 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
