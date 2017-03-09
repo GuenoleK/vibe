@@ -12,7 +12,7 @@ export class HomeView extends Component {
       <RaisedButton label='server action' secondary={true} style={{margin: '30px'}} onClick={() => serverCaller()} />
         <RaisedButton label='Test edit' secondary={true} style={{margin: '30px'}} onClick={() => this.props.router.push('edit-article/1')}/>
         <div id='cards-container'>
-          <div data-focus='card'>
+          <div data-vibe='card'>
             <Card>
               <CardMedia
                 overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
@@ -33,7 +33,7 @@ export class HomeView extends Component {
             </Card>
           </div>
 
-          <div data-focus='card'>
+          <div data-vibe='card'>
             <Card>
               <CardMedia
                 overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
@@ -54,7 +54,7 @@ export class HomeView extends Component {
             </Card>
           </div>
 
-          <div data-focus='card'>
+          <div data-vibe='card'>
             <Card>
               <CardMedia
                 overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
@@ -75,7 +75,7 @@ export class HomeView extends Component {
             </Card>
           </div>
 
-          <div data-focus='card'>
+          <div data-vibe='card'>
             <Card>
               <CardMedia
                 overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
