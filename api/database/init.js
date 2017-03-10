@@ -25,13 +25,13 @@ async function initDb() {
     }
 
     // if (process.env.DB_ENV !== 'prod') {
-        // Populate the database with fake data
-        createRoles();
-        // createUser({firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'})
-        createUserAndArticle({
-          firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'
-        })
-        // createArticle({corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()}, 1)
+    // Populate the database with fake data
+    createRoles();
+    // createUser({firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'})
+    createUserAndArticle({
+        firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'
+    })
+    // createArticle({corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()}, 1)
     // }
 }
 

@@ -6,15 +6,15 @@ import {join} from 'path';
 * Dialect : 'mysql'|'sqlite'|'postgres'|'mssql'
 */
 export const dbSetup = new Sequelize('vibeDB', null, null, {
-  host: 'localhost',
-  dialect: 'sqlite',
-  storage: join(__dirname, './vibeDB.sqlite'),
+    host: 'localhost',
+    dialect: 'sqlite',
+    storage: join(__dirname, './vibeDB.sqlite'),
 
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }
+    pool: {
+        max: 5,
+        min: 0,
+        idle: 10000
+    }
 });
 
 export const sequelizer = Sequelize;
