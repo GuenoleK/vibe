@@ -1,10 +1,8 @@
 import React, {PureComponent} from 'react';
+import {VibeCard} from '../components/card';
 import {FlatButton, RaisedButton} from 'material-ui';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import serverCaller from '../services/test_service';
 import {Link} from 'react-router';
 import {loadArticles} from '../services/articles-services';
-import {loadUser} from '../services/user-services';
 import i18next from 'i18next';
 
 export class HomeView extends PureComponent {
@@ -12,8 +10,7 @@ export class HomeView extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            articles: null,
-            user: null
+            articles: null
         };
     }
 
@@ -27,6 +24,7 @@ export class HomeView extends PureComponent {
 
     consultArticle = (id) => {
         console.log('Going to articles n°',  id);
+        this.props.router.push(`article/${id}`);
     }
 
     renderCards = () => {
@@ -35,20 +33,10 @@ export class HomeView extends PureComponent {
         if(articles) {
             articles.forEach(article => {
                 articlesArray.push(
-                    <div data-vibe='card' key={article.id}>
-                        <Card>
-                            <CardMedia overlay={<CardTitle title={article.title} className='card-overlay' />} >
-                                <img src='http://previews.123rf.com/images/rastudio/rastudio1505/rastudio150500060/39497815-Musical-note-icon-thin-line-for-web-and-mobile-modern-minimalistic-flat-design-Vector-dark-grey-icon-Stock-Vector.jpg'/>
-                            </CardMedia>
-                            <CardText className='card-text'>
-                                {article.description}
-                            </CardText>
-                            <CardActions>
-                                <FlatButton label={i18next.t('button.download')} onClick={() => this.downloadArticle(article.id)} />
-                                <FlatButton label={i18next.t('button.consult')} onClick={() => this.consultArticle(article.id)}/>
-                            </CardActions>
-                        </Card>
-                    </div>
+                    <VibeCard
+                    article={article} key={article.id}
+                    primaryButtonProps={{label: 'button.download', action: this.downloadArticle}}
+                    secondaryButtonProps={{label: 'button.consult', action: this.consultArticle}} />
                 )
             })
             return <div id='home-cards-container'>{articlesArray}</div>

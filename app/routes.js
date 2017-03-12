@@ -1,6 +1,7 @@
 import React from 'react';
 import {HomeView} from './views/home';
 import {ArticleEditionView} from './views/edition';
+import {ArticleConsultationView} from './views/article/consult';
 import {Layout} from './components/layout'
 
 export default {
@@ -11,6 +12,10 @@ export default {
         {
             path: 'home',
             component: HomeView
+        },
+        {
+            path: 'article/:id',
+            component: (props) => <ArticleConsultationView {...props} />
         },
         {
             path: 'edit-article/:id',
