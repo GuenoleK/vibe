@@ -38,8 +38,7 @@ export class Layout extends PureComponent {
 
     setMenuItemStyle(name) {
         return this.checkMenuItem(name) ? {
-            backgroundColor: 'rgba(0,0,0,0.0980392)',
-            paddingTop: '5px'
+            backgroundColor: 'rgba(0,0,0,0.0980392)'
         } : null;
     }
 
