@@ -38,7 +38,8 @@ export class Layout extends PureComponent {
 
     setMenuItemStyle(name) {
         return this.checkMenuItem(name) ? {
-            backgroundColor: 'rgba(0,0,0,0.0980392)'
+            backgroundColor: 'rgba(0,0,0,0.0980392)',
+            paddingTop: '5px'
         } : null;
     }
 
@@ -78,7 +79,7 @@ export class Layout extends PureComponent {
             <div className='global-layout'>
                 <AppBar
                     onLeftIconButtonTouchTap={this.toggleDrawer}
-                    style={{position: 'fixed'}}
+                    style={{position: 'fixed', paddingTop: '15px'}}
                     className='global-appbar'
                     title={this.getTitle(this.props.location.pathname)}
                     iconElementRight={<IconButton iconClassName='material-icons'>account_circle</IconButton>}
@@ -86,7 +87,7 @@ export class Layout extends PureComponent {
                 />
                 <Drawer docked={false} width={300} open={drawerIsOpen} onRequestChange={(drawerIsOpen) => this.setState({drawerIsOpen})}>
                     <AppBar
-                        style={{position: 'fixed'}}
+                        style={{position: 'fixed', paddingTop: '5px'}}
                         iconElementLeft={<IconButton iconClassName='material-icons'>arrow_back</IconButton>}
                         onTitleTouchTap={this.toggleDrawer}
                         onLeftIconButtonTouchTap={this.toggleDrawer}
@@ -97,7 +98,6 @@ export class Layout extends PureComponent {
                     <MenuItem style={this.setMenuItemStyle('Accueil')} focusState={this.checkMenuItem('Accueil') ? 'focused' : 'none'} ref='menuItemHome'onTouchTap={() => this.handleItemClick('/', 'menuItemHome')} primaryText='Accueil' leftIcon={<FontIcon className='material-icons'>home</FontIcon>}/>
                     <MenuItem style={this.setMenuItemStyle('Tutoriel')} focusState={this.checkMenuItem('Tutoriel') ? 'focused' : 'none'} ref='menuItemTuto' onTouchTap={() => this.handleItemClick('/tutorial', 'menuItemTuto')} primaryText='Tutoriels' leftIcon={<FontIcon className='material-icons'>class</FontIcon>}/>
                 </Drawer>
-                <div className='separator' />
                 {this.props.children}
                 <FloatingActionButton onClick={this.handleEditButtonClick} ref='createFAB' className={buttonClassName} secondary={true}><ContentAdd /></FloatingActionButton>
                 {!isShown ? this.showFAB : null}

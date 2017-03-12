@@ -22,7 +22,7 @@ class Main extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div>
+                <div id='container'>
                     {this.props.children}
                 </div>
             </MuiThemeProvider>

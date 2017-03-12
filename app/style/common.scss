@@ -1,5 +1,15 @@
+body {
+    height: 100%;
+    #app {
+        height: 100%;
+        #container {
+            height: 100%;
+        }
+    }
+}
+
 .separator {
-    height: 64px;
+    height: 69px;
 }
 
 .mini-separator {

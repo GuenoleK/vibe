@@ -5,6 +5,7 @@ import serverCaller from '../services/test_service';
 import {Link} from 'react-router';
 import {loadArticles} from '../services/articles-services';
 import {loadUser} from '../services/user-services';
+import i18next from 'i18next';
 
 export class HomeView extends PureComponent {
 
@@ -28,26 +29,30 @@ export class HomeView extends PureComponent {
                 articlesArray.push(
                     <div data-vibe='card' key={article.id}>
                         <Card>
-                            <CardMedia overlay={<CardTitle title={article.title} subtitle={article.description} />} >
+                            <CardMedia overlay={<CardTitle title={article.title} className='card-overlay' />} >
                                 <img src='http://previews.123rf.com/images/rastudio/rastudio1505/rastudio150500060/39497815-Musical-note-icon-thin-line-for-web-and-mobile-modern-minimalistic-flat-design-Vector-dark-grey-icon-Stock-Vector.jpg'/>
                             </CardMedia>
-                            <CardText>
-                                {article.corpus}
+                            <CardText className='card-text'>
+                                {article.description}
                             </CardText>
                             <CardActions>
-                                <FlatButton label="Télécharger" />
-                                <FlatButton label="Consulter" />
+                                <FlatButton label={i18next.t('button.download')} />
+                                <FlatButton label={i18next.t('button.consult')} />
                             </CardActions>
                         </Card>
                     </div>
                 )
             })
+            return <div id='home-cards-container'>{articlesArray}</div>
         }
-        return <div id='home-cards-container'>{articlesArray}</div>
+        return(
+            <div id='home-cards-container-empty'>
+                <span>{i18next.t('articles.empty')}</span>
+            </div>
+        )
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className='home-container'>
                 {this.renderCards()}
