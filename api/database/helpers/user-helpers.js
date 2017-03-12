@@ -34,9 +34,28 @@ export const createUserAndArticle = (userData, articleData) => {
         const role = Role.findById(1);
         role.then((owner) => owner.createUser(userData).then(
             (thing) => {
+                console.log(thing);
                 console.log('=============================\nUser was successfully inserted.\n=============================\n')
                 thing.createArticle(
-                    {corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: thing.dataValues.id}
+                    {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: thing.dataValues.id}
+                ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
+                thing.createArticle(
+                    {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: thing.dataValues.id}
+                ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
+                thing.createArticle(
+                    {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: thing.dataValues.id}
+                ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
+                thing.createArticle(
+                    {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: thing.dataValues.id}
+                ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
+                thing.createArticle(
+                    {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: thing.dataValues.id}
+                ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
+                thing.createArticle(
+                    {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: thing.dataValues.id}
+                ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
+                thing.createArticle(
+                    {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: thing.dataValues.id}
                 ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
             }
         ));

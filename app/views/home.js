@@ -1,101 +1,56 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {FlatButton, RaisedButton} from 'material-ui';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import serverCaller from '../services/test_service';
 import {Link} from 'react-router';
+import {loadArticles} from '../services/articles-services';
+import {loadUser} from '../services/user-services';
 
-export class HomeView extends Component {
+export class HomeView extends PureComponent {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            articles: null,
+            user: null
+        };
+    }
+
+    componentDidMount() {
+        loadArticles().then(data => this.setState({articles: data}));
+    }
+
+    renderCards = () => {
+        const {articles} = this.state;
+        const articlesArray = [];
+        if(articles) {
+            articles.forEach(article => {
+                articlesArray.push(
+                    <div data-vibe='card' key={article.id}>
+                        <Card>
+                            <CardMedia overlay={<CardTitle title={article.title} subtitle={article.description} />} >
+                                <img src='http://previews.123rf.com/images/rastudio/rastudio1505/rastudio150500060/39497815-Musical-note-icon-thin-line-for-web-and-mobile-modern-minimalistic-flat-design-Vector-dark-grey-icon-Stock-Vector.jpg'/>
+                            </CardMedia>
+                            <CardText>
+                                {article.corpus}
+                            </CardText>
+                            <CardActions>
+                                <FlatButton label="Télécharger" />
+                                <FlatButton label="Consulter" />
+                            </CardActions>
+                        </Card>
+                    </div>
+                )
+            })
+        }
+        return <div id='home-cards-container'>{articlesArray}</div>
+    }
 
     render() {
+        console.log(this.state);
         return (
             <div className='home-container'>
-                <RaisedButton label='server action' secondary={true} style={{margin: '30px'}} onClick={() => serverCaller()} />
-                <RaisedButton label='Test edit' secondary={true} style={{margin: '30px'}} onClick={() => this.props.router.push('edit-article/1')}/>
-                <div id='home-cards-container'>
-                    <div data-vibe='card'>
-                        <Card>
-                            <CardMedia
-                                overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-                                >
-                                <img src='http://previews.123rf.com/images/rastudio/rastudio1505/rastudio150500060/39497815-Musical-note-icon-thin-line-for-web-and-mobile-modern-minimalistic-flat-design-Vector-dark-grey-icon-Stock-Vector.jpg'/>
-                            </CardMedia>
-                            <CardTitle title="Card title" subtitle="Card subtitle" />
-                            <CardText>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Donec mattis pretium massa.Aliquam erat volutpat.Nulla facilisi.
-                                Donec vulputate interdum sollicitudin.Nunc lacinia auctor quam sed pellentesque.
-                                Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                            </CardText>
-                            <CardActions>
-                                <FlatButton label="Action1" />
-                                <FlatButton label="Action2" />
-                            </CardActions>
-                        </Card>
-                    </div>
-
-                    <div data-vibe='card'>
-                        <Card>
-                            <CardMedia
-                                overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-                                >
-                                <img src='http://previews.123rf.com/images/rastudio/rastudio1505/rastudio150500060/39497815-Musical-note-icon-thin-line-for-web-and-mobile-modern-minimalistic-flat-design-Vector-dark-grey-icon-Stock-Vector.jpg'/>
-                            </CardMedia>
-                            <CardTitle title="Card title" subtitle="Card subtitle" />
-                            <CardText>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Donec mattis pretium massa.Aliquam erat volutpat.Nulla facilisi.
-                                Donec vulputate interdum sollicitudin.Nunc lacinia auctor quam sed pellentesque.
-                                Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                            </CardText>
-                            <CardActions>
-                                <FlatButton label="Action1" />
-                                <FlatButton label="Action2" />
-                            </CardActions>
-                        </Card>
-                    </div>
-
-                    <div data-vibe='card'>
-                        <Card>
-                            <CardMedia
-                                overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-                                >
-                                <img src='http://previews.123rf.com/images/rastudio/rastudio1505/rastudio150500060/39497815-Musical-note-icon-thin-line-for-web-and-mobile-modern-minimalistic-flat-design-Vector-dark-grey-icon-Stock-Vector.jpg'/>
-                            </CardMedia>
-                            <CardTitle title="Card title" subtitle="Card subtitle" />
-                            <CardText>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Donec mattis pretium massa.Aliquam erat volutpat.Nulla facilisi.
-                                Donec vulputate interdum sollicitudin.Nunc lacinia auctor quam sed pellentesque.
-                                Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                            </CardText>
-                            <CardActions>
-                                <FlatButton label="Action1" />
-                                <FlatButton label="Action2" />
-                            </CardActions>
-                        </Card>
-                    </div>
-
-                    <div data-vibe='card'>
-                        <Card>
-                            <CardMedia
-                                overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-                                >
-                                <img src='http://previews.123rf.com/images/rastudio/rastudio1505/rastudio150500060/39497815-Musical-note-icon-thin-line-for-web-and-mobile-modern-minimalistic-flat-design-Vector-dark-grey-icon-Stock-Vector.jpg'/>
-                            </CardMedia>
-                            <CardTitle title="Card title" subtitle="Card subtitle" />
-                            <CardText>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Donec mattis pretium massa.Aliquam erat volutpat.Nulla facilisi.
-                                Donec vulputate interdum sollicitudin.Nunc lacinia auctor quam sed pellentesque.
-                                Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                            </CardText>
-                            <CardActions>
-                                <FlatButton label="Action1" />
-                                <FlatButton label="Action2" />
-                            </CardActions>
-                        </Card>
-                    </div>
-                </div>
+                {this.renderCards()}
             </div>
         );
     }

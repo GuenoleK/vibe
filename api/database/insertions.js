@@ -4,7 +4,7 @@ import faker from 'faker';
 
 async function insertDB() {
     try {
-        createArticle({corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()}, 1);
+        createArticle({title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()}, 1);
     } catch(error) {
         console.log('Error :', error);
     }

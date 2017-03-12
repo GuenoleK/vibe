@@ -1,101 +1,102 @@
 {
-    "name": "vibe-music",
-    "version": "0.0.1",
-    "description": "vibe-music",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/GuenoleK/vibe.git"
+  "name": "vibe-music",
+  "version": "0.0.1",
+  "description": "vibe-music",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GuenoleK/vibe.git"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
+    "start:api": "better-npm-run start-api",
+    "start:watch-api": "better-npm-run start-api-watch",
+    "build": "webpack --config webpack-production.config.js --progress --colors",
+    "build:api": "gulp",
+    "build:watch-api": "gulp watch",
+    "db-init": "better-npm-run db-init",
+    "build-init-api": "gulp && better-npm-run db-init",
+    "db:insert": "better-npm-run db-insert",
+    "db-init:prod": "better-npm-run db-init-prod",
+    "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save",
+    "reaload:packages": "rm -rf node_modules && npm install"
+  },
+  "betterScripts": {
+    "db-init": {
+      "command": "cd build && node ./api/database/init.js",
+      "env": {
+        "DB_ENV": "dev"
+      }
     },
-    "scripts": {
-        "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
-        "start:api": "better-npm-run start-api",
-        "start:api-watch": "better-npm-run start-api-watch",
-        "build": "webpack --config webpack-production.config.js --progress --colors",
-        "build:api": "gulp",
-        "build:api-watch": "gulp watch",
-        "db:init": "better-npm-run db-init",
-        "build-init-api": "gulp && better-npm-run db-init",
-        "db:insert": "better-npm-run db-insert",
-        "db-init:prod": "better-npm-run db-init-prod",
-        "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save",
-        "reaload:packages": "rm -rf node_modules && npm install"
+    "db-insert": {
+      "command": "cd build && node ./api/database/insertions.js",
+      "env": {
+        "DB_ENV": "dev"
+      }
     },
-    "betterScripts": {
-        "db-init": {
-            "command": "cd build && node ./api/database/init.js",
-            "env": {
-                "DB_ENV": "dev"
-            }
-        },
-        "db-insert": {
-            "command": "cd build && node ./api/database/insertions.js",
-            "env": {
-                "DB_ENV": "dev"
-            }
-        },
-        "db-init-prod": {
-            "command": "cd build && node ./api/database/init.js",
-            "env": {
-                "DB_ENV": "prod"
-            }
-        },
-        "start-api": {
-            "command": "cd build && node ./api/index.js",
-            "env": {
-                "DB_ENV": "prod"
-            }
-        },
-        "start-api-watch": {
-            "command": "cd build && node ./api/index.js",
-            "env": {
-                "DB_ENV": "prod"
-            }
-        }
+    "db-init-prod": {
+      "command": "cd build && node ./api/database/init.js",
+      "env": {
+        "DB_ENV": "prod"
+      }
     },
-    "private": true,
-    "devDependencies": {
-        "autoprefixer-loader": "^3.2.0",
-        "babel-core": "^6.23.1",
-        "babel-loader": "^6.4.0",
-        "babel-plugin-transform-runtime": "^6.23.0",
-        "babel-polyfill": "^6.23.0",
-        "babel-preset-es2015": "^6.22.0",
-        "babel-preset-react": "^6.23.0",
-        "babel-preset-stage-0": "^6.22.0",
-        "better-npm-run": "0.0.14",
-        "css-loader": "^0.26.4",
-        "extract-text-webpack-plugin": "^2.1.0",
-        "faker": "^4.1.0",
-        "gulp": "^3.9.1",
-        "gulp-babel": "^6.1.2",
-        "gulp-util": "^3.0.8",
-        "html-webpack-plugin": "^2.28.0",
-        "merge-stream": "^1.0.1",
-        "mysql": "^2.13.0",
-        "node-sass": "^4.5.0",
-        "react-hot-loader": "^1.3.1",
-        "sass-loader": "^6.0.3",
-        "sqlite3": "^3.1.8",
-        "style-loader": "^0.13.2",
-        "transfer-webpack-plugin": "^0.1.4",
-        "webpack": "^1.12.9",
-        "webpack-dev-server": "^1.14.0"
+    "start-api": {
+      "command": "cd build && node ./api/index.js",
+      "env": {
+        "DB_ENV": "prod"
+      }
     },
-    "dependencies": {
-        "body-parser": "^1.17.1",
-        "cors": "^2.8.1",
-        "es6-promise": "^4.1.0",
-        "express": "^4.15.2",
-        "i18next": "^7.1.1",
-        "isomorphic-fetch": "^2.2.1",
-        "lodash": "^4.17.4",
-        "material-design-lite": "^1.3.0",
-        "material-ui": "^0.17.0",
-        "mysql2": "^1.2.0",
-        "react": "^15.4.2",
-        "react-dom": "^15.4.2",
-        "react-router": "^3.0.2",
-        "react-tap-event-plugin": "^2.0.1",
-        "sequelize": "^3.30.2"
+    "start-api-watch": {
+      "command": "cd build && nodemon ./api/index.js",
+      "env": {
+        "DB_ENV": "prod"
+      }
     }
+  },
+  "private": true,
+  "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "better-npm-run": "0.0.14",
+    "css-loader": "^0.26.4",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "faker": "^4.1.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-util": "^3.0.8",
+    "html-webpack-plugin": "^2.28.0",
+    "merge-stream": "^1.0.1",
+    "mysql": "^2.13.0",
+    "node-sass": "^4.5.0",
+    "nodemon": "^1.11.0",
+    "react-hot-loader": "^1.3.1",
+    "sass-loader": "^6.0.3",
+    "sqlite3": "^3.1.8",
+    "style-loader": "^0.13.2",
+    "transfer-webpack-plugin": "^0.1.4",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "es6-promise": "^4.1.0",
+    "express": "^4.15.2",
+    "i18next": "^7.1.1",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.4",
+    "material-design-lite": "^1.3.0",
+    "material-ui": "^0.17.0",
+    "mysql2": "^1.2.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.2",
+    "react-tap-event-plugin": "^2.0.1",
+    "sequelize": "^3.30.2"
+  }
 }

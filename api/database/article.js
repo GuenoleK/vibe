@@ -4,6 +4,7 @@ import Sequelize from 'sequelize';
 export const Article = dbSetup.define(
     'article',
     {
+        title: {type: sequelizer.STRING, allowNull: false},
         corpus: { type: sequelizer.STRING, allowNull: true },
         description: { type: sequelizer.STRING, allowNull: true },
         link: { type: sequelizer.STRING, allowNull: true },
