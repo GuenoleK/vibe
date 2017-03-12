@@ -21,6 +21,14 @@ export class HomeView extends PureComponent {
         loadArticles().then(data => this.setState({articles: data}));
     }
 
+    downloadArticle = (id) => {
+        console.log('Downloading articles n°',  id);
+    }
+
+    consultArticle = (id) => {
+        console.log('Going to articles n°',  id);
+    }
+
     renderCards = () => {
         const {articles} = this.state;
         const articlesArray = [];
@@ -36,8 +44,8 @@ export class HomeView extends PureComponent {
                                 {article.description}
                             </CardText>
                             <CardActions>
-                                <FlatButton label={i18next.t('button.download')} />
-                                <FlatButton label={i18next.t('button.consult')} />
+                                <FlatButton label={i18next.t('button.download')} onClick={() => this.downloadArticle(article.id)} />
+                                <FlatButton label={i18next.t('button.consult')} onClick={() => this.consultArticle(article.id)}/>
                             </CardActions>
                         </Card>
                     </div>
