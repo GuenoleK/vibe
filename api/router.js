@@ -9,8 +9,9 @@ module.exports = function(app) {
     //routes will go there
     apiRoutes.get('/helloworld', _ourController.helloworld);
     apiRoutes.get('/user/:id', userController.getUser);
+    apiRoutes.get('/user/', userController.getUsers);
     apiRoutes.get('/article/:id', articleController.getArticle);
-    apiRoutes.get('/article', articleController.getArticles);
+    apiRoutes.get('/article/', articleController.getArticles);
 
     app.use('/api', apiRoutes);
 }

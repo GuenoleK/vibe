@@ -9,4 +9,4 @@ gulp.task('default', function () {
   return gutil.log('Gulp is running!')
 });
 
-gulp.task('watch', ['default'], () => gulp.watch('src/**/*.ts', ['build']));
+gulp.task('watch', ['default'], () => gulp.watch('src/**/*.js', ['build']));

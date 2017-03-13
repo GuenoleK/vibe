@@ -1,0 +1,14 @@
+.consulted-article {
+    padding-top: 84px;
+    display: flex;
+    justify-content: center;
+
+    [data-vibe="consult-card"] {
+        padding-top: 10px;
+        padding-right: 65px;
+        padding-left: 65px;
+        flex-grow: 1;
+        display: inline-block;
+        min-width: 300px;
+    }
+}

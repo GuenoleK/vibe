@@ -9,12 +9,12 @@ export const getArticles = async (req, res, next) => {
     }
 }
 
-export const getArticle = async (res, req, next) => {
-    console.log(req);
+export const getArticle = async (req, res, next) => {
     try {
         res.json((await Article.findById(req.params.id)).get());
         console.log('An article was returned');
     } catch (e) {
-        console.log(e);
+        res.status(400);
+        res.json({error: e})
     }
 }
