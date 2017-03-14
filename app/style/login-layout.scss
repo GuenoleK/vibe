@@ -1,7 +1,10 @@
 .login-layout {
     height: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 60px;
-    padding-bottom: 60px;
+
+    .login-bar {
+        height: 108px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

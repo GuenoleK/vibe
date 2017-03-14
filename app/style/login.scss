@@ -3,4 +3,21 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    text-align: center;
+
+    .login-instruction-text {
+        color: #555;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+
+    .login-card {
+        width: 350px;
+        padding: 40px 40px;
+
+        * {
+            display: block;
+        }
+    }
 }
