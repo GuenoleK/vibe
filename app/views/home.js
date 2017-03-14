@@ -24,7 +24,9 @@ export class HomeView extends PureComponent {
     }
 
     componentDidMount() {
-        this.callLoadArticles();
+        if(localStorage.getItem('user')) {
+            this.callLoadArticles();
+        } else this.props.router.push('/');
     }
 
     downloadArticle = (id) => {

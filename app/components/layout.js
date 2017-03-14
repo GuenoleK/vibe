@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Avatar, AppBar, Drawer, FloatingActionButton, FontIcon, IconButton, MenuItem, Subheader} from 'material-ui';
+import {Avatar, AppBar, Drawer, FloatingActionButton, FontIcon, IconButton, MenuItem, FlatButton, Subheader} from 'material-ui';
 import {ContentAdd} from 'material-ui/svg-icons';
 import {capitalize} from 'lodash';
 import 'material-design-lite/material';
@@ -72,6 +72,12 @@ export class Layout extends PureComponent {
         this.props.router.push(!id ? `edit-article/1` : `edit-article/${id}`);
     }
 
+    onButtonLogOutClick = () => {
+        console.log('Déconnexion');
+        localStorage.removeItem('user');
+        this.props.router.push('/');
+    }
+
     render() {
         const {isShown, buttonClassName, drawerIsOpen} = this.state;
         return (
@@ -81,7 +87,7 @@ export class Layout extends PureComponent {
                     style={{position: 'fixed', paddingTop: '6px'}}
                     className='global-appbar'
                     title={this.getTitle(this.props.location.pathname)}
-                    iconElementRight={<IconButton iconClassName='material-icons' onClick={() => this.props.router.push('/login')}>account_circle</IconButton>}
+                    iconElementRight={<FlatButton label='Déconnexion' onClick={this.onButtonLogOutClick} style={{marginTop: '3px', verticalAlign: 'middle'}}primary={true} />}
                     iconStyleRight={{alignSelf: 'center', marginTop: '0px', marginRight: '10px'}}
                 />
                 <Drawer docked={false} width={300} open={drawerIsOpen} onRequestChange={(drawerIsOpen) => this.setState({drawerIsOpen})}>

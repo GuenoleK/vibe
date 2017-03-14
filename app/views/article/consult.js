@@ -15,7 +15,9 @@ export class ArticleConsultationView extends PureComponent {
     }
 
     componentDidMount() {
-        loadArticle(this.props.params.id).then(data => this.setState({article: data}));
+        if(localStorage.getItem('user')) {
+            loadArticle(this.props.params.id).then(data => this.setState({article: data}));
+        } else this.props.router.push('/');
     }
 
     downloadArticle = (id) => {
