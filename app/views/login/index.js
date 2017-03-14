@@ -88,6 +88,7 @@ export class LoginView extends PureComponent {
             marginBottom: '15px',
             textTransform: 'capitalize'
         }
+        console.log(this.state);
 
         return (
             <div className='login-form'>

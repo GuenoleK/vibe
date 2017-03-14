@@ -17,7 +17,7 @@ export const signIn = async (username, password) => {
     });
     const data = await response.json();
     if(data.username) {
-        localStorage.setItem('user', data);
+        localStorage.setItem('user', JSON.stringify(data));
     } else {
         localStorage.removeItem('user');
     }

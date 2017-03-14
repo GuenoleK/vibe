@@ -1,4 +1,5 @@
 import {User} from '../database/user';
+import {Role} from '../database/role';
 
 export const getUsers = async (req, res) => {
     try {
@@ -33,7 +34,8 @@ export const signIn = async (req, res) => {
             res.json({error: 'login.snackbar.invalidPassword'});
         } else if(user && credentials.password === user.password) {
             console.log('SignIn Success');
-            res.json({userid: user.id, username: user.username});
+            const role = await Role.findOne({where: {id: user.roleId}});
+            res.json({userid: user.id, username: user.username, role: role.roleName});
         }
     }
 }

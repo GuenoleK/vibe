@@ -17,7 +17,10 @@ export class Layout extends PureComponent {
       }
 
     componentDidMount() {
-        this.showFAB();
+        const loggedUser = JSON.parse(localStorage.getItem('user'));
+        if(loggedUser.role === 'admin') {
+            this.showFAB();
+        }
     }
 
     // This will give or remove animation class on the add button
@@ -105,7 +108,7 @@ export class Layout extends PureComponent {
                 </Drawer>
                 {this.props.children}
                 <FloatingActionButton onClick={this.handleEditButtonClick} ref='createFAB' className={buttonClassName} secondary={true}><ContentAdd /></FloatingActionButton>
-                {!isShown ? this.showFAB : null}
+
             </div>
         )
     }
