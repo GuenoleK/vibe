@@ -56,12 +56,17 @@ export class LoginView extends PureComponent {
 
     onSignInClick = () => {
         const {username, password, usernameError, passwordError} = this.state;
-        if(usernameError === null || passwordError === null) {
-            console.log('Call login on server');
-            signIn(username, password).then(data => console.log(data));
-            this.showSnackbar('login.snackbar.success', 'green');
+        if(usernameError === null && passwordError === null) {
+            signIn(username, password).then(data => {
+                if(data.error) {
+                    this.showSnackbar(i18next.t(data.error), 'red')
+                } else {
+                    this.showSnackbar('login.snackbar.success', 'green');
+                    this.props.router.push('/home')
+                }
+            });
         } else {
-            this.showSnackbar('login.snackbar.failure', 'red');
+            this.showSnackbar('login.snackbar.globalError', 'red')
         }
     }
 

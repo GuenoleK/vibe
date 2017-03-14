@@ -26,14 +26,14 @@ export const signIn = async (req, res) => {
         const user = await User.findOne({where: {username: credentials.username}});
         if(!user) {
             console.log('User not found');
-            res.json({error: 'User not found'})
+            res.json({error: 'login.snackbar.userNotFound'})
         }
         if(user && credentials.password !== user.password) {
             console.log('Invalid Password');
-            res.json({error: 'Invalid password'});
+            res.json({error: 'login.snackbar.invalidPassword'});
         } else if(user && credentials.password === user.password) {
             console.log('SignIn Success');
-            res.json(user);
+            res.json({userid: user.id, username: user.username});
         }
     }
 }

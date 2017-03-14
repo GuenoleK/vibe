@@ -19,7 +19,10 @@ export const french = {
                 snackbar: {
                     success: 'Connexion réussi.',
                     failure: 'Connexion échouée.',
-                    close: 'fermer'
+                    close: 'fermer',
+                    userNotFound: 'Cet utilisateur n\'existe pas.',
+                    invalidPassword: 'Mot de passe invalide.',
+                    globalError: 'Veuillez renseigner tous les champs.'
                 }
             }
         }

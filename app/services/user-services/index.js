@@ -15,7 +15,13 @@ export const signIn = async (username, password) => {
         },
         body: JSON.stringify({username, password})
     });
-    return await response.json();
+    const data = await response.json();
+    if(data.username) {
+        localStorage.setItem('user', data);
+    } else {
+        localStorage.removeItem('user');
+    }
+    return data;
     // if (data.token) {
     //     localStorage.setItem('token', data.token);
     //     return true;
