@@ -1,8 +1,9 @@
 import React, {PureComponent} from 'react';
 import {Paper, RaisedButton, Snackbar, TextField} from 'material-ui';
+import ActionAccountCirle from 'material-ui/svg-icons/action/account-circle';
 import {Link} from 'react-router';
 import i18next from 'i18next';
-import ActionAccountCirle from 'material-ui/svg-icons/action/account-circle';
+import {signIn} from '../../services/user-services';
 
 export class LoginView extends PureComponent {
 
@@ -54,9 +55,10 @@ export class LoginView extends PureComponent {
     }
 
     onSignInClick = () => {
-        const {usernameError, passwordError} = this.state;
+        const {username, password, usernameError, passwordError} = this.state;
         if(usernameError === null || passwordError === null) {
             console.log('Call login on server');
+            signIn(username, password).then(data => console.log(data));
             this.showSnackbar('login.snackbar.success', 'green');
         } else {
             this.showSnackbar('login.snackbar.failure', 'red');
@@ -90,7 +92,7 @@ export class LoginView extends PureComponent {
                         <ActionAccountCirle style={{size: '50px', display: 'block', height: '120px', width: 'none', color: 'rgba(50, 50, 50, 0.5)'}} />
                         <TextField className='login-text-field' errorText={usernameError} hintText={i18next.t('login.username')} onBlur={this.onUsernameBlurHandler} onChange={this.onUsernameChangeHandler} ref='loginUsername' style={loginTextFieldStyle} />
                         <TextField type='password' errorText={passwordError} hintText={i18next.t('login.password')} onBlur={this.onPasswordBlurHandler} onChange={this.onPasswordChangeHandler} ref='loginPassword' style={loginTextFieldStyle} />
-                        <RaisedButton label={i18next.t('login.signIn')} onClick={this.onSignInClick} primary={true}/>
+                        <RaisedButton label={i18next.t('login.signIn')} onClick={this.onSignInClick} overlayStyle={{ backgroundColor: 'rgba(0, 0, 255, 0.5)'}} primary={true}/>
                     </Paper>
                 </div>
                 <Snackbar

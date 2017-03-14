@@ -7,8 +7,8 @@ export const User = dbSetup.define(
     {
         firstName: { type: sequelizer.STRING },
         lastName: { type: sequelizer.STRING },
-        pseudo: { type: sequelizer.STRING, allowNull: true },
-        password: { type: sequelizer.STRING },
+        username: { type: sequelizer.STRING, allowNull: false, unique: true },
+        password: { type: sequelizer.STRING, allowNull: false },
     },
     {
         timestamps: false
