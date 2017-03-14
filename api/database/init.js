@@ -29,7 +29,7 @@ async function initDb() {
     createRoles();
     // createUser({firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'})
     createUserAndArticle({
-        firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'
+        firstName: 'Guénolé', lastName: 'kikabou', username: 'guenole_k', password: 'admin', roleId: 1
     })
     // createArticle({corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()}, 1)
     // }

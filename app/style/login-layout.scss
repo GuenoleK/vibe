@@ -6,5 +6,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+
+        .login-header-title {
+            font-size: 11px;
+            padding-bottom: 10px;
+        }
+
+        .login-header-pitch {
+            font-size: 15px;
+        }
     }
 }

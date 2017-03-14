@@ -16,6 +16,9 @@ const muiTheme = getMuiTheme({
         primary1Color: indigo500,
         accent1Color: pink500,
     },
+    snackbar: {
+        actionColor: 'white'
+    }
 });
 
 class Main extends Component {

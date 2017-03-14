@@ -13,7 +13,8 @@ export class LoginLayout extends PureComponent {
         return (
             <div className='login-layout'>
                 <div className='login-bar'>
-                    <span className='login-header-text'>SHARE THE MUSIC, FEEL THE VIBE !</span>
+                    <span className='login-header-title'>VIBE</span>
+                    <span className='login-header-pitch'>SHARE THE MUSIC, FEEL THE VIBE !</span>
                 </div>
                 {this.props.children}
             </div>
