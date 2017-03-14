@@ -1,5 +1,6 @@
 .home-container {
     height: 100%;
+    padding-bottom: 55px;
 
     #home-cards-container-empty {
         height: 100%;
@@ -24,8 +25,7 @@
         flex-wrap:wrap;
         margin-right: auto;
         margin-left: auto;
-        margin-top: -10px;
-        width: 85%;
+        width: 80%;
 
         [data-vibe="card"] {
             padding: 10px;

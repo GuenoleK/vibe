@@ -24,13 +24,11 @@ export class ArticleConsultationView extends PureComponent {
 
     render() {
         const {article} = this.state;
-        console.log(this.state);
         return (
             <div className='consulted-article'>
-                <div className='separator'></div>
                 {article &&
                     <div data-vibe='consult-card'>
-                        <Card>
+                        <Card style={{width: '80%'}}>
                             <CardHeader
                                 title={article.title}
                                 subtitle={article.description}

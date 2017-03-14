@@ -9,6 +9,7 @@
         padding-left: 65px;
         flex-grow: 1;
         display: inline-block;
-        min-width: 300px;
+        display: flex;
+        justify-content: center;
     }
 }

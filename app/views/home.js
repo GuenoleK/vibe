@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {VibeCard} from '../components/card';
-import {FlatButton, RaisedButton} from 'material-ui';
+import {FlatButton, RaisedButton, CircularProgress} from 'material-ui';
 import {Link} from 'react-router';
 import {loadArticles} from '../services/articles-services';
 import i18next from 'i18next';
@@ -10,12 +10,21 @@ export class HomeView extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            articles: null
+            articles: null,
+            isLoading: false
         };
     }
 
+    callLoadArticles = () => {
+        this.setState({isLoading: true}, () => {
+            setTimeout(() => {
+                loadArticles().then(data => this.setState({articles: data}));
+            }, 1000);
+        })
+    }
+
     componentDidMount() {
-        loadArticles().then(data => this.setState({articles: data}));
+        this.callLoadArticles();
     }
 
     downloadArticle = (id) => {
@@ -28,7 +37,7 @@ export class HomeView extends PureComponent {
     }
 
     renderCards = () => {
-        const {articles} = this.state;
+        const {articles, isLoading} = this.state;
         const articlesArray = [];
         if(articles) {
             articles.forEach(article => {
@@ -43,7 +52,8 @@ export class HomeView extends PureComponent {
         }
         return(
             <div id='home-cards-container-empty'>
-                <span>{i18next.t('articles.empty')}</span>
+                {this.state.isLoading && <CircularProgress size={80} thickness={5} />}
+                {!isLoading && <span>{i18next.t('articles.empty')}</span>}
             </div>
         )
     }

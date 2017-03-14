@@ -78,15 +78,15 @@ export class Layout extends PureComponent {
             <div className='global-layout'>
                 <AppBar
                     onLeftIconButtonTouchTap={this.toggleDrawer}
-                    style={{position: 'fixed', paddingTop: '15px'}}
+                    style={{position: 'fixed', paddingTop: '6px'}}
                     className='global-appbar'
                     title={this.getTitle(this.props.location.pathname)}
-                    iconElementRight={<IconButton iconClassName='material-icons'>account_circle</IconButton>}
+                    iconElementRight={<IconButton iconClassName='material-icons' onClick={() => this.props.router.push('/login')}>account_circle</IconButton>}
                     iconStyleRight={{alignSelf: 'center', marginTop: '0px', marginRight: '10px'}}
                 />
                 <Drawer docked={false} width={300} open={drawerIsOpen} onRequestChange={(drawerIsOpen) => this.setState({drawerIsOpen})}>
                     <AppBar
-                        style={{position: 'fixed', paddingTop: '5px'}}
+                        style={{position: 'fixed', paddingTop: '6px'}}
                         iconElementLeft={<IconButton iconClassName='material-icons'>arrow_back</IconButton>}
                         onTitleTouchTap={this.toggleDrawer}
                         onLeftIconButtonTouchTap={this.toggleDrawer}
