@@ -8,7 +8,7 @@ const base64_encode = (file) => {
     // read binary data
     var bitmap = fs.readFileSync(file);
     // convert binary data to base64 encoded string
-    return new Buffer(bitmap).toString('base64');
+    return new Buffer(bitmap, 'binary').toString('base64');
 }
 
 export const createFakeUsers = (userNumber) => {
@@ -48,6 +48,12 @@ export const createUserAndArticle = (userData, articleData) => {
             (article) => {
                 fs.readdir('../tablature_ressources', (err, files) => {
                     files.forEach(file => {
+                        // const fileName = file.split('').map(e => {
+                        //     if(e === '\'' || e === ',') {
+                        //         return ' ';
+                        //     }
+                        //     return e;
+                        // }).join('');
                         article.createArticle(
                             {
                                 tablature: base64_encode(`../tablature_ressources/${file}`),
@@ -60,28 +66,6 @@ export const createUserAndArticle = (userData, articleData) => {
                         )
                     });
                 });
-                // console.log('=============================\nUser was successfully inserted.\n=============================\n')
-                // article.createArticle(
-                //     {tablature: base64_encode('../docs/20151120_181753.jpg'), title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: article.dataValues.id}
-                // ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
-                // article.createArticle(
-                //     {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: article.dataValues.id}
-                // ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
-                // article.createArticle(
-                //     {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: article.dataValues.id}
-                // ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
-                // article.createArticle(
-                //     {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: article.dataValues.id}
-                // ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
-                // article.createArticle(
-                //     {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: article.dataValues.id}
-                // ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
-                // article.createArticle(
-                //     {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: article.dataValues.id}
-                // ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
-                // article.createArticle(
-                //     {title: faker.company.companyName(), corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date(), userId: article.dataValues.id}
-                // ).done(console.log('=============================\nArticle was successfully inserted.\n=============================\n'))
             }
         ));
     } catch (error) {

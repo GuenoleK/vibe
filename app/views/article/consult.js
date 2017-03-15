@@ -27,7 +27,10 @@ export class ArticleConsultationView extends PureComponent {
 
     convertArticleValues = () => {
         let {article} = this.state;
-        return {decodedTablature: new Buffer(this.state.article.tablature, 'base64').toString('binary'), reformatCreateDate: moment(article.createdAt).format('DD/MM/YYYY')}
+        var blob = new Blob([new Buffer(this.state.article.tablature, 'base64').toString('binary')], {type: "image/png"});
+        const d = window.URL.createObjectURL(blob);
+        console.log(blob);
+        return {decodedTablature: new Buffer(this.state.article.tablature, 'base64').toString('binary'), reformatCreateDate: moment(article.createdAt).format('DD/MM/YYYY'), blob}
     }
 
     render() {
@@ -59,7 +62,7 @@ export class ArticleConsultationView extends PureComponent {
                                 </div>
                             </CardText>
                             <CardActions>
-                                <FlatButton label={i18next.t('button.download')} onClick={() => this.downloadArticle(article.id)} />
+                                <a href={`data:image/png;base64,${convertedValues.decodedTablature}`} download={article.title}><FlatButton label={i18next.t('button.download')} onClick={() => this.downloadArticle(article.id)} /></a>
                             </CardActions>
                         </Card>
                     </div>

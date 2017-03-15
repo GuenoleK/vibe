@@ -67,6 +67,7 @@
     "css-loader": "^0.26.4",
     "extract-text-webpack-plugin": "^2.1.0",
     "faker": "^4.1.0",
+    "filereader": "^0.10.3",
     "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",

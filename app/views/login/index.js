@@ -21,11 +21,11 @@ export class LoginView extends PureComponent {
     }
 
     onUsernameChangeHandler = (evt) => {
-        this.setState({username: evt.target.value, usernameError: null});
+        this.setState({username: this.refs.loginUsername.input.value, usernameError: null});
     }
 
     onUsernameBlurHandler = (evt) => {
-        const value = evt.target.value;
+        const value = this.refs.loginUsername.input.value;
         if(value === '') {
             this.setState({username: value, usernameError: i18next.t('login.textFieldError')})
         } else if(value !== '' && this.state.usernameError !== null) {
@@ -34,11 +34,11 @@ export class LoginView extends PureComponent {
     }
 
     onPasswordChangeHandler = (evt) => {
-        this.setState({password: evt.target.value, passwordError: null});
+        this.setState({password: this.refs.loginPassword.input.value, passwordError: null});
     }
 
     onPasswordBlurHandler = (evt) => {
-        const value = evt.target.value;
+        const value = this.refs.loginPassword.input.value;
         if(value === '') {
             this.setState({password: value, passwordError: i18next.t('login.textFieldError')})
         } else if(value !== '' && this.state.passwordError !== null) {
@@ -56,6 +56,7 @@ export class LoginView extends PureComponent {
 
     onSignInClick = () => {
         const {username, password, usernameError, passwordError} = this.state;
+        console.log('HERE');
         if(usernameError === null && passwordError === null) {
             signIn(username, password).then(data => {
                 if(data.error) {
@@ -69,6 +70,16 @@ export class LoginView extends PureComponent {
             this.showSnackbar('login.snackbar.globalError', 'red')
         }
     }
+
+    handleOnKeyDown = (event) => {
+        const {which} = event;
+        const {username, password} = this.state;
+        if (which === 13) {
+            this.onUsernameBlurHandler();
+            this.onPasswordBlurHandler();
+            setTimeout(() => {this.onSignInClick()},20);
+        }
+    };
 
     render() {
         const {usernameError, passwordError, snackbarColor, snackbarMessage} = this.state;
@@ -96,8 +107,8 @@ export class LoginView extends PureComponent {
                 <div className='login-card'>
                     <Paper style={paperStyle} zDepth={1}>
                         <ActionAccountCirle style={{size: '50px', display: 'block', height: '120px', width: 'none', color: 'rgba(50, 50, 50, 0.5)'}} />
-                        <TextField className='login-text-field' errorText={usernameError} hintText={i18next.t('login.username')} onBlur={this.onUsernameBlurHandler} onChange={this.onUsernameChangeHandler} ref='loginUsername' style={loginTextFieldStyle} />
-                        <TextField type='password' errorText={passwordError} hintText={i18next.t('login.password')} onBlur={this.onPasswordBlurHandler} onChange={this.onPasswordChangeHandler} ref='loginPassword' style={loginTextFieldStyle} />
+                        <TextField className='login-text-field' errorText={usernameError} hintText={i18next.t('login.username')} onBlur={this.onUsernameBlurHandler} onChange={this.onUsernameChangeHandler} ref='loginUsername' onKeyDown={this.handleOnKeyDown} style={loginTextFieldStyle} />
+                        <TextField type='password' errorText={passwordError} hintText={i18next.t('login.password')} onBlur={this.onPasswordBlurHandler} onChange={this.onPasswordChangeHandler} onKeyDown={this.handleOnKeyDown} ref='loginPassword' style={loginTextFieldStyle} />
                         <RaisedButton label={i18next.t('login.signIn')} onClick={this.onSignInClick} overlayStyle={{ backgroundColor: 'rgba(0, 0, 255, 0.5)'}} primary={true}/>
                     </Paper>
                 </div>
