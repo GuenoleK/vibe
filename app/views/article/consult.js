@@ -64,7 +64,7 @@ export class ArticleConsultationView extends PureComponent {
                         </Card>
                     </div>
                 }
-                {!article && <CircularProgress size={80} thickness={5} />}
+                {!article && <div data-vibe='article-consult-loading'><CircularProgress size={80} thickness={5} /></div>}
             </div>
         );
     }
