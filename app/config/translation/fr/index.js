@@ -11,6 +11,9 @@ export const french = {
                 download: 'Télécharger',
                 'consult': 'Consulter'
             },
+            card: {
+                publishedAt: 'Publié le'
+            },
             login: {
                 username: 'nom d\'utilisateur',
                 textFieldError: 'Champs obligatoire',

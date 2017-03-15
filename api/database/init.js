@@ -27,7 +27,7 @@ async function initDb() {
     // if (process.env.DB_ENV !== 'prod') {
     // Populate the database with fake data
     createRoles();
-    // createUser({firstName: 'Joe', lastName: 'Bidden', pseudo: 'jbmax', password: 'helloworld'})
+    // createUser({firstName: 'Guénolé', lastName: 'kikabou', username: 'guenole_k', password: 'admin', roleId: 1})
     createUserAndArticle({
         firstName: 'Guénolé', lastName: 'kikabou', username: 'guenole_k', password: 'admin', roleId: 1
     })
