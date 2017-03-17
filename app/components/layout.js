@@ -103,7 +103,6 @@ export class Layout extends PureComponent {
                                         hintStyle={{color: 'rgba(255,255,255,0.6)'}}
                                         style= {{marginLeft: 2, width: '100%'}}
                                         onFocus={e => {
-                                            console.log(e.target.parentNode.parentNode);
                                             e.target.parentNode.parentNode.style.backgroundColor = 'transparent';
                                             e.target.parentNode.parentNode.style.boxShadow = '0px 1px 3px rgba(0,0,0,0.3)';
                                         }}
