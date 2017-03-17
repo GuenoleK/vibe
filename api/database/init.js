@@ -32,7 +32,8 @@ async function initDb() {
         fs.readdir('../tablature_ressources', (err, files) => {
             files.forEach(file => {
                 const name = uuid.v4();
-                const associatedFilename = `${name}.jpg`;
+                const extension = file.split('.')[1];
+                const associatedFilename = `${name}.${extension}`;
                 dictionary[file] = associatedFilename;
 
                 Jimp.read(`../tablature_ressources/${file}`, function (err, image) {
