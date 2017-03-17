@@ -21,21 +21,13 @@ export class ArticleConsultationView extends PureComponent {
         } else this.props.router.push('/');
     }
 
-    downloadArticle = (id) => {
-        console.log('Download article n°', id);
-    }
-
     convertArticleValues = () => {
         let {article} = this.state;
-        var blob = new Blob([new Buffer(this.state.article.tablature, 'base64').toString('binary')], {type: "image/png"});
-        const d = window.URL.createObjectURL(blob);
-        console.log(blob);
-        return {decodedTablature: new Buffer(this.state.article.tablature, 'base64').toString('binary'), reformatCreateDate: moment(article.createdAt).format('DD/MM/YYYY'), blob}
+        return {decodedTablature: new Buffer(article.tablature, 'base64'), reformatCreateDate: moment(article.createdAt).format('DD/MM/YYYY')}
     }
 
     render() {
         const {article} = this.state;
-        console.log(this.state);
         let convertedValues = {}
         if(article) {
             convertedValues = this.convertArticleValues();
@@ -45,7 +37,7 @@ export class ArticleConsultationView extends PureComponent {
             <div className='consulted-article'>
                 {article &&
                     <div data-vibe='consult-card'>
-                        <Card style={{width: '60%'}}>
+                        <Card style={{width: "60%"}}>
                             <CardHeader
                                 title={'Guénolé Kikabou'}
                                 subtitle={`${i18next.t('card.publishedAt')} ${convertedValues.reformatCreateDate}`}
@@ -62,7 +54,7 @@ export class ArticleConsultationView extends PureComponent {
                                 </div>
                             </CardText>
                             <CardActions>
-                                <a href={`data:image/png;base64,${convertedValues.decodedTablature}`} download={article.title}><FlatButton label={i18next.t('button.download')} onClick={() => this.downloadArticle(article.id)} /></a>
+                                <a href={`data:image/png;base64,${convertedValues.decodedTablature}`} download={article.title}><FlatButton label={i18next.t('button.download')} /></a>
                             </CardActions>
                         </Card>
                     </div>

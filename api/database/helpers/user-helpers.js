@@ -4,11 +4,10 @@ import {Article} from '../article';
 import faker from 'faker';
 var fs = require('fs');
 
-const base64_encode = (file) => {
-    // read binary data
-    var bitmap = fs.readFileSync(file);
-    // convert binary data to base64 encoded string
-    return new Buffer(bitmap, 'binary').toString('base64');
+const base64_encode = (path, file, dictionary) => {
+    const item = dictionary[file];
+    var bitmap = fs.readFileSync(`../tablature_copy/${item}`);
+    return new Buffer(bitmap).toString('base64');
 }
 
 export const createFakeUsers = (userNumber) => {
@@ -33,7 +32,6 @@ export const createFakeUsers = (userNumber) => {
 export const createUser = (data) => {
     try {
         const role = Role.findById(1);
-        // const user = User.create(data);
         role.then((user) => user.createUser(data));
         console.log('=============================\nUser was successfully inserted.\n=============================\n')
     } catch (error) {
@@ -41,22 +39,16 @@ export const createUser = (data) => {
     }
 }
 
-export const createUserAndArticle = (userData, articleData) => {
+export const createUserAndArticle = (userData, dictionary) => {
     try {
         const role = Role.findById(1);
         role.then((user) => user.createUser(userData).then(
             (article) => {
                 fs.readdir('../tablature_ressources', (err, files) => {
                     files.forEach(file => {
-                        // const fileName = file.split('').map(e => {
-                        //     if(e === '\'' || e === ',') {
-                        //         return ' ';
-                        //     }
-                        //     return e;
-                        // }).join('');
                         article.createArticle(
                             {
-                                tablature: base64_encode(`../tablature_ressources/${file}`),
+                                tablature: base64_encode('../tablature_ressources', file, dictionary),
                                 title: file.split('.')[0],
                                 corpus: faker.lorem.sentences(),
                                 description: faker.lorem.sentence(), link: 'htpp://google.com',

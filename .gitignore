@@ -1,5 +1,6 @@
 node_modules
 build
 tablature_ressources
+tablature_copy
 *.log
 npm-debug.log*

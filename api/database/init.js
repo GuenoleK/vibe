@@ -4,6 +4,9 @@ import {createRoles} from './helpers/role-helpers';
 import {createArticle} from './helpers/article-helpers';
 import {Role} from './role';
 import faker from 'faker';
+const fs = require('fs');
+const uuid = require('node-uuid');
+const Jimp = require('jimp');
 
 /** Create the database. */
 async function initDb() {
@@ -24,15 +27,31 @@ async function initDb() {
         console.log(`Error while trying to sync the model with the database : ${error}`);
     }
 
-    // if (process.env.DB_ENV !== 'prod') {
-    // Populate the database with fake data
+    const createDocsReferencesDictionary = () => {
+        let dictionary = [];
+        fs.readdir('../tablature_ressources', (err, files) => {
+            files.forEach(file => {
+                const name = uuid.v4();
+                const associatedFilename = `${name}.jpg`;
+                dictionary[file] = associatedFilename;
+
+                Jimp.read(`../tablature_ressources/${file}`, function (err, image) {
+                    if (err) throw err;
+                    image.quality(60).write(`../tablature_copy/${associatedFilename}`); // save
+                });
+            });
+        });
+        console.log('Created dictionary', dictionary);
+        return dictionary;
+    }
+
+    const dictionary = createDocsReferencesDictionary();
+
+    // Populate the database with data
     createRoles();
-    // createUser({firstName: 'Guénolé', lastName: 'kikabou', username: 'guenole_k', password: 'admin', roleId: 1})
     createUserAndArticle({
         firstName: 'Guénolé', lastName: 'kikabou', username: 'guenole_k', password: 'admin', roleId: 1
-    })
-    // createArticle({corpus: faker.lorem.sentences(), description: faker.lorem.sentence(), link: 'htpp://google.com', createdAt: new Date()}, 1)
-    // }
+    }, dictionary);
 }
 
 initDb();

@@ -56,7 +56,6 @@ export class LoginView extends PureComponent {
 
     onSignInClick = () => {
         const {username, password, usernameError, passwordError} = this.state;
-        console.log('HERE');
         if(usernameError === null && passwordError === null) {
             signIn(username, password).then(data => {
                 if(data.error) {
@@ -99,7 +98,6 @@ export class LoginView extends PureComponent {
             marginBottom: '15px',
             textTransform: 'capitalize'
         }
-        console.log(this.state);
 
         return (
             <div className='login-form'>

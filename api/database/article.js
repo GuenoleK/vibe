@@ -10,7 +10,7 @@ export const Article = dbSetup.define(
         link: { type: sequelizer.STRING, allowNull: true },
         createdAt: { type: sequelizer.DATE },
         modifiedAt: { type: sequelizer.DATE, allowNull: true },
-        tablature: { type: sequelizer.BLOB, allowNull: true },
+        tablature: { type: sequelizer.BLOB('long'), allowNull: true },
         audio: { type: sequelizer.BLOB, allowNull: true }
     },
     {
