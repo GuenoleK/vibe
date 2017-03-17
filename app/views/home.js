@@ -18,7 +18,7 @@ export class HomeView extends PureComponent {
     callLoadArticles = () => {
         this.setState({isLoading: true}, () => {
             setTimeout(() => {
-                loadArticles().then(data => this.setState({articles: data}));
+                loadArticles().then(data => this.setState({articles: data.length < 1 ? null : data, isLoading: false}));
             }, 1000);
         })
     }
@@ -55,7 +55,7 @@ export class HomeView extends PureComponent {
         return(
             <div id='home-cards-container-empty'>
                 {this.state.isLoading && <CircularProgress size={80} thickness={5} />}
-                {!isLoading && <span>{i18next.t('articles.empty')}</span>}
+                {!articles && !isLoading && <span>{i18next.t('articles.empty')}</span>}
             </div>
         )
     }

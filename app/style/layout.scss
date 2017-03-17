@@ -1,6 +1,35 @@
 .global-layout {
     height: 100%;
-    
+
+    [data-focus='global-appbar-title'] {
+        display: flex;
+
+        .global-appbar-search {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            padding-left: 35px;
+
+            .searchbar-container {
+                display: flex;
+                background-color: rgba(0,0,0,0.18);
+                width: 500px;
+                height: 48px;
+                transition: background 0.2s ease-in-out;
+                border-radius: 6px;
+                align-items: center;
+                padding-left: 10px;
+                margin-top: 4px;
+
+                &:hover {
+                    transition: background 0.2s ease-in-out;
+                    box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+                    background-color: transparent !important;
+                }
+            }
+        }
+    }
+
     .add-button {
         margin: 0px;
         bottom: 32px;

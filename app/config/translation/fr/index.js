@@ -27,6 +27,9 @@ export const french = {
                     invalidPassword: 'Mot de passe invalide.',
                     globalError: 'Veuillez renseigner tous les champs.'
                 }
+            },
+            search: {
+                placeholder: 'Rechercher'
             }
         }
     }

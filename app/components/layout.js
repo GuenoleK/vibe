@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Avatar, AppBar, Drawer, FloatingActionButton, FontIcon, IconButton, MenuItem, FlatButton, Subheader} from 'material-ui';
+import {Avatar, AppBar, Drawer, FloatingActionButton, FontIcon, IconButton, MenuItem, FlatButton, Subheader, TextField} from 'material-ui';
 import {ContentAdd} from 'material-ui/svg-icons';
 import {capitalize} from 'lodash';
 import 'material-design-lite/material';
@@ -14,7 +14,7 @@ export class Layout extends PureComponent {
             buttonClassName: 'add-button',
             drawerIsOpen: false
         };
-      }
+    }
 
     componentDidMount() {
         const loggedUser = JSON.parse(localStorage.getItem('user'));
@@ -50,13 +50,13 @@ export class Layout extends PureComponent {
         if(this.refs[ref].props.focusState !== 'focused') {
             switch (path) {
                 case '/':
-                    this.props.router.push(path);
-                    break;
+                this.props.router.push(path);
+                break;
                 case '/tutorial':
-                    this.props.router.push(`${path}/1`);
-                    break;
+                this.props.router.push(`${path}/1`);
+                break;
                 default:
-                    return null;
+                return null;
             }
         }
     };
@@ -89,10 +89,37 @@ export class Layout extends PureComponent {
                     onLeftIconButtonTouchTap={this.toggleDrawer}
                     style={{position: 'fixed', paddingTop: '6px'}}
                     className='global-appbar'
-                    title={this.getTitle(this.props.location.pathname)}
+                    title={
+                        <div data-focus='global-appbar-title'>
+                            <span className='global-appbar-title'>{this.getTitle(this.props.location.pathname)}</span>
+                            <div className='global-appbar-search'>
+                                <div className='searchbar-container'>
+                                    <i className='material-icons' style={{color: 'white', padding: 6}}>search</i>
+                                    <TextField
+                                        id='search-bar'
+                                        inputStyle={{color: 'white'}}
+                                        underlineShow={false}
+                                        hintText={`${i18n.t('search.placeholder')}`}
+                                        hintStyle={{color: 'rgba(255,255,255,0.6)'}}
+                                        style= {{marginLeft: 2, width: '100%'}}
+                                        onFocus={e => {
+                                            console.log(e.target.parentNode.parentNode);
+                                            e.target.parentNode.parentNode.style.backgroundColor = 'transparent';
+                                            e.target.parentNode.parentNode.style.boxShadow = '0px 1px 3px rgba(0,0,0,0.3)';
+                                        }}
+
+                                        onBlur={e => {
+                                            e.target.parentNode.parentNode.style.backgroundColor = 'rgba(0,0,0,0.18)';
+                                            e.target.parentNode.parentNode.style.boxShadow = undefined;
+                                        }}
+                                        />
+                                </div>
+                            </div>
+                        </div>
+                    }
                     iconElementRight={<FlatButton label='Déconnexion' onClick={this.onButtonLogOutClick} style={{marginTop: '3px', verticalAlign: 'middle'}}primary={true} />}
                     iconStyleRight={{alignSelf: 'center', marginTop: '0px', marginRight: '10px'}}
-                />
+                    />
                 <Drawer docked={false} width={300} open={drawerIsOpen} onRequestChange={(drawerIsOpen) => this.setState({drawerIsOpen})}>
                     <AppBar
                         style={{position: 'fixed', paddingTop: '6px'}}
@@ -101,14 +128,13 @@ export class Layout extends PureComponent {
                         onLeftIconButtonTouchTap={this.toggleDrawer}
                         className='menu-appbar'
                         title='Menu'
-                    />
+                        />
                     <div className='separator' />
                     <MenuItem style={this.setMenuItemStyle('Accueil')} focusState={this.checkMenuItem('Accueil') ? 'focused' : 'none'} ref='menuItemHome'onTouchTap={() => this.handleItemClick('/', 'menuItemHome')} primaryText='Accueil' leftIcon={<FontIcon className='material-icons'>home</FontIcon>}/>
                     <MenuItem style={this.setMenuItemStyle('Tutoriel')} focusState={this.checkMenuItem('Tutoriel') ? 'focused' : 'none'} ref='menuItemTuto' onTouchTap={() => this.handleItemClick('/tutorial', 'menuItemTuto')} primaryText='Tutoriels' leftIcon={<FontIcon className='material-icons'>class</FontIcon>}/>
                 </Drawer>
                 {this.props.children}
                 <FloatingActionButton onClick={this.handleEditButtonClick} ref='createFAB' className={buttonClassName} secondary={true}><ContentAdd /></FloatingActionButton>
-
             </div>
         )
     }
