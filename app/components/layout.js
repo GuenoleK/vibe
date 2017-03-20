@@ -3,7 +3,7 @@ import {Avatar, AppBar, Drawer, FloatingActionButton, FontIcon, IconButton, Menu
 import {ContentAdd} from 'material-ui/svg-icons';
 import {capitalize} from 'lodash';
 import 'material-design-lite/material';
-import i18n from 'i18next';
+import i18next from 'i18next';
 
 export class Layout extends PureComponent {
 
@@ -36,7 +36,7 @@ export class Layout extends PureComponent {
     // This will return the correct title
     getTitle(pathname) {
         const pathArray = pathname.split("/");
-        return capitalize(i18n.t(pathArray[1]));
+        return capitalize(i18next.t(pathArray[1]));
     }
 
     setMenuItemStyle(name) {
@@ -83,6 +83,7 @@ export class Layout extends PureComponent {
 
     render() {
         const {isShown, buttonClassName, drawerIsOpen} = this.state;
+        console.log(window.innerWidth);
         return (
             <div className='global-layout'>
                 <AppBar
@@ -99,7 +100,7 @@ export class Layout extends PureComponent {
                                         id='search-bar'
                                         inputStyle={{color: 'white'}}
                                         underlineShow={false}
-                                        hintText={`${i18n.t('search.placeholder')}`}
+                                        hintText={`${i18next.t('search.placeholder')}`}
                                         hintStyle={{color: 'rgba(255,255,255,0.6)'}}
                                         style= {{marginLeft: 2, width: '100%'}}
                                         onFocus={e => {
