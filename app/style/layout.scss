@@ -1,7 +1,7 @@
 .global-layout {
     height: 100%;
 
-    [data-focus='global-appbar-title'] {
+    [data-component='global-appbar-title'] {
         display: flex;
 
         .global-appbar-search {

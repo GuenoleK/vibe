@@ -91,7 +91,7 @@ export class Layout extends PureComponent {
                     style={{position: 'fixed', paddingTop: '6px'}}
                     className='global-appbar'
                     title={
-                        <div data-focus='global-appbar-title'>
+                        <div data-component='global-appbar-title'>
                             <span className='global-appbar-title'>{this.getTitle(this.props.location.pathname)}</span>
                             <div className='global-appbar-search'>
                                 <div className='searchbar-container'>

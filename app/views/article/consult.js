@@ -16,9 +16,7 @@ export class ArticleConsultationView extends PureComponent {
     }
 
     componentDidMount() {
-        if(localStorage.getItem('user')) {
-            loadArticle(this.props.params.id).then(data => this.setState({article: data}));
-        } else this.props.router.push('/');
+        if(!localStorage.getItem('user')) this.props.router.push('/');
     }
 
     convertArticleValues = () => {
@@ -35,7 +33,7 @@ export class ArticleConsultationView extends PureComponent {
 
         return (
             <div className='consulted-article'>
-                {article &&
+                {/* {article &&
                     <div data-vibe='consult-card'>
                         <Card style={{width: "60%"}}>
                             <CardHeader
@@ -59,7 +57,14 @@ export class ArticleConsultationView extends PureComponent {
                         </Card>
                     </div>
                 }
-                {!article && <div data-vibe='article-consult-loading'><CircularProgress size={80} thickness={5} /></div>}
+                {!article && <div data-vibe='article-consult-loading'><CircularProgress size={80} thickness={5} /></div>} */}
+
+                <br />
+                <iframe src={`https://drive.google.com/file/d/${this.props.params.id}/preview`} 
+                    width="80%"
+                    height="70%"
+                    align="middle">
+                </iframe>
             </div>
         );
     }
