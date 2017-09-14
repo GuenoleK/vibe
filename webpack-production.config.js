@@ -5,7 +5,7 @@ const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 const config = {
-  entry: [path.join(__dirname, '/app/app.js')],
+  entry: [path.join(__dirname, '/app/app.tsx')],
   // Render source-map file for final build
   devtool: 'source-map',
   // output config
@@ -49,8 +49,21 @@ const config = {
         test: /\.css$/,
         loaders: ['style', 'css', 'sass']
       },
+      {
+        test: /\.tsx?$/,
+        loaders: ['babel-loader','ts-loader'],
+        exclude: [nodeModulesPath]
+      },
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: [nodeModulesPath]
+      }
     ],
   },
+  resolve: {
+    extensions: ["", ".tsx", ".ts", ".jsx", ".js"]
+  }
 };
 
 module.exports = config;
