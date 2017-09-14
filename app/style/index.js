@@ -1,4 +1,3 @@
-import './article-consult.scss';
 import './home.scss';
 import './layout.scss';
 import './login-layout.scss';

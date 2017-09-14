@@ -19,18 +19,12 @@ export class Layout extends PureComponent {
     componentDidMount() {
         const loggedUser = JSON.parse(localStorage.getItem('user'));
         if(loggedUser.role === 'admin') {
-            this.showFAB();
+            this.setState({buttonClassName: 'add-button show', isShown: !this.state.isShown})
         }
     }
 
-    // This will give or remove animation class on the add button
-    showFAB = () => {
-        const {isShown, buttonClassName} = this.state;
-        if (this.refs.createFAB.props.className === 'add-button') {
-            this.setState({buttonClassName: 'add-button show', isShown: !isShown})
-        } else {
-            this.setState({buttonClassName: 'add-button', isShown: !isShown})
-        }
+    componentWillUnmount() {
+        this.setState({buttonClassName: 'add-button', isShown: !this.state.isShown})
     }
 
     // This will return the correct title
@@ -76,14 +70,12 @@ export class Layout extends PureComponent {
     }
 
     onButtonLogOutClick = () => {
-        console.log('Déconnexion');
         localStorage.removeItem('user');
         this.props.router.push('/');
     }
 
     render() {
-        const {isShown, buttonClassName, drawerIsOpen} = this.state;
-        console.log(window.innerWidth);
+        const {buttonClassName, drawerIsOpen} = this.state;
         return (
             <div className='global-layout'>
                 <AppBar

@@ -1,22 +1,35 @@
 import React, {PureComponent} from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import {FlatButton, RaisedButton, CircularProgress} from 'material-ui';
+import {FlatButton, RaisedButton, CircularProgress, FloatingActionButton, FontIcon} from 'material-ui';
 import {Link} from 'react-router';
 import {loadArticle} from '../../services/articles-services';
 import i18next from 'i18next';
 import moment from 'moment';
+import "./article-consult.scss";
 
 export class ArticleConsultationView extends PureComponent {
 
     constructor(props) {
         super(props);
         this.state = {
-            article: null
+            article: null,
+            isShown: false,
+            downloadButtonClassName: "download-button"
         };
     }
 
     componentDidMount() {
-        if(!localStorage.getItem('user')) this.props.router.push('/');
+        if(!localStorage.getItem('user')) {
+            this.props.router.push('/');
+        }
+        window.scrollTo(0, 0);
+        setTimeout(() => {
+            this.setState({downloadButtonClassName: 'download-button show', isShown: !this.state.isShown})
+        }, 400);
+    }
+
+    componentWillUnmount() {
+        this.setState({downloadButtonClassName: 'download-button', isShown: !this.state.isShown})
     }
 
     convertArticleValues = () => {
@@ -33,38 +46,22 @@ export class ArticleConsultationView extends PureComponent {
 
         return (
             <div className='consulted-article'>
-                {/* {article &&
-                    <div data-vibe='consult-card'>
-                        <Card style={{width: "60%"}}>
-                            <CardHeader
-                                title={'Guénolé Kikabou'}
-                                subtitle={`${i18next.t('card.publishedAt')} ${convertedValues.reformatCreateDate}`}
-                                avatar='https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_account_circle_black_36px.svg'
-                                />
-                            <CardMedia
-                                overlay={<CardTitle title={article.title} subtitle={article.description} />}
-                                >
-                                <img className='article-consult-tablature' src={`data:image/png;base64,${convertedValues.decodedTablature}`} />
-                            </CardMedia>
-                            <CardText>
-                                <div className='article-consult-corpus'>
-                                    {article.corpus}
-                                </div>
-                            </CardText>
-                            <CardActions>
-                                <a href={`data:image/png;base64,${convertedValues.decodedTablature}`} download={article.title}><FlatButton label={i18next.t('button.download')} /></a>
-                            </CardActions>
-                        </Card>
-                    </div>
-                }
-                {!article && <div data-vibe='article-consult-loading'><CircularProgress size={80} thickness={5} /></div>} */}
-
-                <br />
-                <iframe src={`https://drive.google.com/file/d/${this.props.params.id}/preview`} 
-                    width="80%"
-                    height="70%"
-                    align="middle">
-                </iframe>
+                <div className="song-pdf">
+                    <iframe src={`https://drive.google.com/file/d/${this.props.params.id}/preview`}>
+                    </iframe>
+                    <FloatingActionButton
+                        ref="floatingDownloadButton"
+                        className={this.state.downloadButtonClassName}
+                        alt="Télécharger"
+                        primary 
+                        href={`https://drive.google.com/uc?id=${this.props.params.id}&export=download`}
+                        style={{position: "relative", top: "-5%", left: "50%"}}>
+                        <FontIcon className="material-icons">file_download</FontIcon>
+                    </FloatingActionButton>
+                </div>
+                <div className="song-carousel">
+                    carousel here
+                </div>
             </div>
         );
     }

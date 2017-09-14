@@ -46,7 +46,6 @@ export const createFakeArticles = (articlesNumber) => {
                 userId: 11
             })
         }
-        console.log(data);
         Article.bulkCreate(data);
         console.log('=============================\n10 articles successfully inserted.\n=============================\n');
     } catch (error) {
