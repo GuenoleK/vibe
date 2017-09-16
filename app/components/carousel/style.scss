@@ -1,0 +1,39 @@
+
+
+div[data-component="vibe-carousel"]{
+    display: flex;
+    align-items: center;
+    width: 70%;
+
+    div[data-component="vibe-carousel-content"]{
+        flex: 1;
+        width: 70%;
+        padding: 10px;
+        background-color: lightgray;
+        display: flex;
+        align-items: center;
+
+        div[data-component="container"]{
+            position: relative;
+            overflow-x: hidden;
+            width: 100%;
+            height: 450px;
+            display: flex;
+            align-items: center;
+
+            div[data-component="handler"]{
+                position : absolute;
+
+                div[data-component="content-list"]{
+                    display: flex;
+                    width: initial;
+
+                    div[data-component="item" ]{
+                        margin-right: 15px;
+                    }
+
+                }
+            }
+        }
+    }
+}

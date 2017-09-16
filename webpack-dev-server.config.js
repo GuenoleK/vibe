@@ -8,10 +8,7 @@ const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const config = {
   // Entry points to the project
   entry: [
-    'webpack/hot/dev-server',
-    'webpack/hot/only-dev-server',
-    'babel-polyfill',
-    path.join(__dirname, 'app/app.tsx'),
+    'webpack/hot/dev-server', 'webpack/hot/only-dev-server', 'babel-polyfill', path.join(__dirname, 'app/app.tsx')
   ],
   // Server Configuration options
   devServer: {
@@ -25,7 +22,7 @@ const config = {
   devtool: 'eval',
   output: {
     path: buildPath, // Path of output file
-    filename: 'app.js',
+    filename: 'app.js'
   },
   plugins: [
     // Enables Hot Modules Replacement
@@ -34,8 +31,10 @@ const config = {
     new webpack.NoErrorsPlugin(),
     // Moves files
     new TransferWebpackPlugin([
-      {from: 'www'},
-  ], path.resolve(__dirname, 'app')),
+      {
+        from: 'www'
+      }
+    ], path.resolve(__dirname, 'app'))
   ],
   module: {
     loaders: [
@@ -43,27 +42,28 @@ const config = {
         // React-hot loader and
         test: /\.js$/, // All .js files
         loaders: ['babel-loader'],
-        exclude: [nodeModulesPath],
-      },
-      {
+        exclude: [nodeModulesPath]
+      }, {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
-      },
-      {
+      }, {
         test: /\.css$/,
         loaders: ['style', 'css', 'sass']
-      },
-      {
+      }, {
         test: /\.tsx?$/,
-        loaders: ['babel-loader','ts-loader'],
+        loaders: [
+          'babel-loader', 'ts-loader'
+        ],
         exclude: [nodeModulesPath]
-      },
-      {
+      }, {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: [nodeModulesPath]
+      }, {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192'
       }
-    ],
+    ]
   },
   resolve: {
     extensions: ["", ".tsx", ".ts", ".jsx", ".js"]
