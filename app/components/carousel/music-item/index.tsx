@@ -1,20 +1,22 @@
 import React from "react";
 import Audio from 'react-audioplayer';
 import "./style.scss";
+import AudioPlayer from 'react-h5-audio-player';
 
 interface AudioMediaCarouselItemProps {
     data: {
-        name: string; src: string;
-        img: string; comments: string;
+        url: string;
+        displayText: string
     }
 }
 
 /** Music Carousel Item component */
 export class AudioMediaCarouselItem extends React.Component<AudioMediaCarouselItemProps, {}> {
     render() {
+        console.log("ELEMENT", this.props.data);
         return(
             <div data-component="audio-media-item">
-                <Audio className="audio-player" theme={{boxShadow : "3px 3px 3px 0 rgba(0, 0, 0, 0.24)"}} width={600} height={400} playlist={[this.props.data]}/>
+                <AudioPlayer src={this.props.data.url} />
             </div>
         )
     }

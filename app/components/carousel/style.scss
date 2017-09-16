@@ -3,7 +3,7 @@
 div[data-component="vibe-carousel"]{
     display: flex;
     align-items: center;
-    width: 70%;
+    width: 100%;
 
     div[data-component="vibe-carousel-content"]{
         flex: 1;
@@ -23,6 +23,7 @@ div[data-component="vibe-carousel"]{
 
             div[data-component="handler"]{
                 position : absolute;
+                padding-top: 3%;
 
                 div[data-component="content-list"]{
                     display: flex;
@@ -30,8 +31,8 @@ div[data-component="vibe-carousel"]{
 
                     div[data-component="item" ]{
                         margin-right: 15px;
+                        width: 100%;
                     }
-
                 }
             }
         }

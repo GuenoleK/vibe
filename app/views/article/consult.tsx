@@ -49,22 +49,22 @@ ArticleConsultViewState > {
     list = [
         {
             name: "Ténor",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnd2JfajFEcXdGalk&export=download",
+            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
             img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
             comments: "Ténor"
         }, {
             name: "Soprano",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnd2JfajFEcXdGalk&export=download",
+            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
             img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
             comments: "Soprano"
         }, {
             name: "Alto",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnd2JfajFEcXdGalk&export=download",
+            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
             img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
             comments: "Alto"
         }, {
             name: "Tous",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnd2JfajFEcXdGalk&export=download",
+            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
             img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
             comments: "Tous"
         }
@@ -95,12 +95,15 @@ ArticleConsultViewState > {
 
     render() {
 
+        const test: React.CSSProperties = {justifyContent: "center"}
+
         const style = {
-            height: "100%",
-            width: "100%",
+            height: "70%",
+            width: "70%",
             padding: 20,
             textAlign: 'center',
-            display: 'inline-block',
+            display: 'flex',
+            justifyContent: test.justifyContent
           };
 
         return (
@@ -122,36 +125,28 @@ ArticleConsultViewState > {
 
                 <div className="song-carousel">
                     <Paper style={style} zDepth={2}>
-                    {/* <VibeCarousel
+                    <VibeCarousel
                         contentSize={{
                         height: 450,
-                        width: "70%"
+                        width: 70
                     }}
                         list={[
                             {
-                                name: "Chant de la page",
-                                src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnd2JfajFEcXdGalk&export=download",
-                                img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
-                                comments: "Ténor"
+                                url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
+                                displayText: "Soprano"
                             }, {
-                                name: "Chant de la page",
-                                src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnd2JfajFEcXdGalk&export=download",
-                                img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
-                                comments: "Ténor"
+                                url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
+                                displayText: "Ténor"
                             }, {
-                                name: "Chant de la page",
-                                src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnd2JfajFEcXdGalk&export=download",
-                                img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
-                                comments: "Ténor"
+                                url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
+                                displayText: "ALto"
                             }, {
-                                name: "Chant de la page",
-                                src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnd2JfajFEcXdGalk&export=download",
-                                img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
-                                comments: "Ténor"
+                                url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
+                                displayText: "Tous"
                             }
                         ]}
-                    SlideComponent={AudioMediaCarouselItem}/> */}
-                        <MusicList list={this.list} />
+                    SlideComponent={AudioMediaCarouselItem}/>
+                        {/* <MusicList list={this.list} /> */}
                     </Paper>
                 </div>
             </div>

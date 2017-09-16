@@ -74,7 +74,7 @@ export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T 
             <div data-component="vibe-carousel">
                 <VibeIconButton
                     style={{
-                        backgroundColor: "white",
+                        backgroundColor: "black",
                         borderTopLeftRadius: 25,
                         borderTopRightRadius: 25,
                         borderBottomLeftRadius: 25,
@@ -82,29 +82,30 @@ export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T 
                         marginRight: 15
                     }}
                     iconName="keyboard_arrow_left"
+                    iconColor="white"
                     onClick={() => this.moinsOffset()} />
-                <div ref={i => this.carouselContent = i} style={{height: this.props.contentSize.height, width: this.props.contentSize.width}} data-component="vibe-carousel-content">
+                <div
+                    ref={i => this.carouselContent = i}
+                    style={{height: this.props.contentSize.height, width: this.props.contentSize.width}}
+                    data-component="vibe-carousel-content">
                     <div
                         data-component="container"
                         style={{
-                        height: this.slideComponentHeight
-                    }}>
+                        height: this.slideComponentHeight }}>
                         <div data-component="handler">
                             <Motion
                                 style={{
-                                transform: spring(this.state.offset)
-                            }}>
+                                transform: spring(this.state.offset) }}>
                                 {style => (
-                                    <div
-                                        ref={i => this.content = i}
-                                        data-component="content-list"
-                                        style={{
-                                        transform: `translateX(-${style.transform}px)`
-                                    }}>
-                                        {this.props.list.map(e => this.renderSlideComponent(e))}
-                                    </div>
-                                )
-}
+                                        <div
+                                            ref={i => this.content = i}
+                                            data-component="content-list"
+                                            style={{
+                                            transform: `translateX(-${style.transform}px)` }}>
+                                            {this.props.list.map(e => this.renderSlideComponent(e))}
+                                        </div>
+                                    )
+                                }
                             </Motion>
                         </div>
 
@@ -112,14 +113,18 @@ export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T 
                 </div>
                 <VibeIconButton
                     style={{
-                        backgroundColor: "white",
+                        backgroundColor: "black",
                         borderTopLeftRadius: 25,
                         borderTopRightRadius: 25,
                         borderBottomLeftRadius: 25,
                         borderBottomRightRadius: 25,
-                        marginLeft: 15
+                        marginLeft: 15,
+                        iconStyle: {
+                            color: "white"
+                        }
                     }}
                     iconName="keyboard_arrow_right"
+                    iconColor="white"
                     onClick={() => this.plusOffset()} />
             </div>
         );
