@@ -7,7 +7,14 @@ import {
     CardTitle,
     CardText
 } from 'material-ui/Card';
-import {FlatButton, RaisedButton, CircularProgress, FloatingActionButton, FontIcon} from 'material-ui';
+import {
+    FlatButton,
+    RaisedButton,
+    CircularProgress,
+    FloatingActionButton,
+    FontIcon,
+    Paper
+} from 'material-ui';
 import {Link, RouteComponentProps, InjectedRouter} from 'react-router';
 import i18next from 'i18next';
 import "./article-consult.scss";
@@ -88,23 +95,33 @@ ArticleConsultViewState > {
 
     render() {
 
+        const style = {
+            height: "100%",
+            width: "100%",
+            padding: 20,
+            textAlign: 'center',
+            display: 'inline-block',
+          };
+
         return (
             <div className='consulted-article'>
                 <div className="song-pdf">
-                    <iframe src={`https://drive.google.com/file/d/${this.props.params.id}/preview`}></iframe>
-                    <FloatingActionButton
-                        ref="floatingDownloadButton"
-                        className={this.state.downloadButtonClassName}
-                        href={`https://drive.google.com/uc?id=${this.props.params.id}&export=download`}
-                        style={{
-                        position: "relative",
-                        top: "-5%",
-                        left: "50%"
-                    }}>
-                        <FontIcon className="material-icons">file_download</FontIcon>
-                    </FloatingActionButton>
+                        <iframe src={`https://drive.google.com/file/d/${this.props.params.id}/preview`}></iframe>
+                        <FloatingActionButton
+                            ref="floatingDownloadButton"
+                            className={this.state.downloadButtonClassName}
+                            href={`https://drive.google.com/uc?id=${this.props.params.id}&export=download`}
+                            style={{
+                            position: "relative",
+                            top: "-5%",
+                            left: "50%"
+                        }}>
+                            <FontIcon className="material-icons">file_download</FontIcon>
+                        </FloatingActionButton>
                 </div>
+
                 <div className="song-carousel">
+                    <Paper style={style} zDepth={2}>
                     {/* <VibeCarousel
                         contentSize={{
                         height: 450,
@@ -135,6 +152,7 @@ ArticleConsultViewState > {
                         ]}
                     SlideComponent={AudioMediaCarouselItem}/> */}
                         <MusicList list={this.list} />
+                    </Paper>
                 </div>
             </div>
         );
