@@ -127,7 +127,7 @@ ArticleConsultViewState > {
                     <Paper style={style} zDepth={2}>
                     <VibeCarousel
                         contentSize={{
-                        height: 450,
+                        height: "59%",
                         width: 70
                     }}
                         list={[

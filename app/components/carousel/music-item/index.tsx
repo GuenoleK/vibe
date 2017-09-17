@@ -1,7 +1,6 @@
 import React from "react";
 import Audio from 'react-audioplayer';
 import "./style.scss";
-import AudioPlayer from 'react-h5-audio-player';
 
 interface AudioMediaCarouselItemProps {
     data: {
@@ -16,7 +15,10 @@ export class AudioMediaCarouselItem extends React.Component<AudioMediaCarouselIt
         console.log("ELEMENT", this.props.data);
         return(
             <div data-component="audio-media-item">
-                <AudioPlayer src={this.props.data.url} />
+                <audio controls preload="metadata">
+                    <source src={this.props.data.url} type="audio/mpeg" />>
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         )
     }

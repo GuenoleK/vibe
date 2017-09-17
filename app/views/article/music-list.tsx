@@ -13,14 +13,10 @@ import i18next from 'i18next';
 import "./article-consult.scss";
 import {VibeCarousel} from '../../components/carousel/index';
 import {AudioMediaCarouselItem} from '../../components/carousel/music-item/index';
-import Audio from 'react-audioplayer';
 
 interface MusicListProps {
     list: {
-        name: string;
-        src: string;
-        img: string;
-        comments: string;
+        url: string
     }[]
 }
 
@@ -33,9 +29,10 @@ export class MusicList extends React.Component<MusicListProps, {}> {
                 {this.props.list && 
                     this.props.list.map(song => {
                         return (
-                            <div data-component="audio-media-item">
-                                <Audio className="audio-player" theme={{boxShadow : "3px 3px 3px 0 rgba(0, 0, 0, 0.24)"}} width={600} height={400} playlist={[song]}/>
-                            </div>
+                            <audio controls preload="none">
+                                <source src={song.url} type="audio/mpeg" />>
+                                Your browser does not support the audio element.
+                            </audio>
                         )
                     })
                 }

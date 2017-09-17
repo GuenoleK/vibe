@@ -49,10 +49,10 @@ export class HomeView extends React.Component<HomeViewProps, HomeViewState> {
             fileList[0].forEach(file => {
                 articlesArray.push(
                     <VibeCard
-                    file={file} key={file.id}
-                    buttonsProps={{
-                        primary: {label: 'button.download', action: this.downloadArticle}, secondary: {label: "button.consult", action: this.consultArticle}
-                    }} />
+                        file={file} key={file.id}
+                        buttonsProps={{
+                            primary: {label: 'button.download', action: this.downloadArticle}, secondary: {label: "button.consult", action: this.consultArticle}
+                        }} />
                 )
             })
             return <div id='home-cards-container'>{articlesArray}</div>

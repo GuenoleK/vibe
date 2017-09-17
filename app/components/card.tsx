@@ -21,10 +21,11 @@ interface VibeCardProps {
 export class VibeCard extends React.Component<VibeCardProps, {}> {
     render() {
         const {file, buttonsProps} = this.props
+        const fileName = file.name.split(".")[0];
         return(
             <div data-vibe='card'>
                 <Card>
-                    <CardMedia overlay={<CardTitle title={file.name} />} >
+                    <CardMedia overlay={<CardTitle title={fileName} />} >
                         <img src='http://previews.123rf.com/images/rastudio/rastudio1505/rastudio150500060/39497815-Musical-note-icon-thin-line-for-web-and-mobile-modern-minimalistic-flat-design-Vector-dark-grey-icon-Stock-Vector.jpg'/>
                     </CardMedia>
                     <CardText className='card-text' style={{padding: "16px 16px 0px 16px"}}>
