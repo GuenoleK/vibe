@@ -20,7 +20,6 @@ import i18next from 'i18next';
 import "./article-consult.scss";
 import {VibeCarousel} from '../../components/carousel/index';
 import {AudioMediaCarouselItem} from '../../components/carousel/music-item/index';
-import Audio from 'react-audioplayer';
 import {MusicList} from './music-list';
 
 interface ArticleConsultViewProps {

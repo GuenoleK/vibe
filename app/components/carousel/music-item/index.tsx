@@ -1,5 +1,4 @@
 import React from "react";
-import Audio from 'react-audioplayer';
 import "./style.scss";
 
 interface AudioMediaCarouselItemProps {

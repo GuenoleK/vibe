@@ -7,6 +7,7 @@ import {Motion, spring} from "react-motion";
 import {IconButton} from "material-ui";
 import "./style.scss";
 import {VibeIconButton} from "../vibe-icon-button/index";
+import {indigo500, pink500} from 'material-ui/styles/colors';
 
 interface VibeCarouselProps < T > {
     list: T[];
@@ -74,7 +75,7 @@ export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T 
             <div data-component="vibe-carousel">
                 <VibeIconButton
                     style={{
-                        backgroundColor: "black",
+                        backgroundColor: pink500,
                         borderTopLeftRadius: 25,
                         borderTopRightRadius: 25,
                         borderBottomLeftRadius: 25,
@@ -113,7 +114,7 @@ export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T 
                 </div>
                 <VibeIconButton
                     style={{
-                        backgroundColor: "black",
+                        backgroundColor: pink500,
                         borderTopLeftRadius: 25,
                         borderTopRightRadius: 25,
                         borderBottomLeftRadius: 25,
