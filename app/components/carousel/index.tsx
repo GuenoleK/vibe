@@ -4,7 +4,7 @@
  */
 import React from "react";
 import {Motion, spring} from "react-motion";
-import {IconButton} from "material-ui";
+import {IconButton, Paper} from "material-ui";
 import "./style.scss";
 import {VibeIconButton} from "../vibe-icon-button/index";
 import {indigo500, pink500} from 'material-ui/styles/colors';
@@ -19,17 +19,24 @@ interface VibeCarouselProps < T > {
     }
 }
 
-export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T >, {
-    offset : number
-} > {
+interface VibeCarouselState {
+    offset: number;
+    rightMoves: number;
+    leftMoves: number;
+}
+
+export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T >, VibeCarouselState > {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            offset: 0
+            offset: 0,
+            rightMoves: 0,
+            leftMoves: 3
         }
     }
+
 
     content;
     carouselContent;
@@ -50,23 +57,30 @@ export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T 
         if (this.carouselContent) {
             this.containerWidth = this.carouselContent.clientWidth;
         }
-        if (this.content) {
-            this.contentWidth = this.content.clientWidth;
-        }
     }
 
     plusOffset = () => {
-        const {offset} = this.state;
-        this.setState({
-            offset: Math.min(offset + this.containerWidth - 20, this.contentWidth - this.containerWidth)
-        });
+        const {offset, leftMoves, rightMoves} = this.state;
+
+        if(rightMoves < this.props.list.length - 1) {
+            this.setState({
+                offset: (offset + this.containerWidth) + 15,
+                rightMoves: rightMoves + 1,
+                leftMoves: leftMoves + 1
+            });
+        }
     }
 
     moinsOffset = () => {
-        const {offset} = this.state;
-        this.setState({
-            offset: Math.max(0, offset - this.containerWidth - 2)
-        });
+        const {offset, leftMoves, rightMoves} = this.state;
+
+        if(leftMoves > this.props.list.length - 1) {
+            this.setState({
+                offset: (offset - this.containerWidth) - 15,
+                leftMoves: leftMoves - 1,
+                rightMoves: rightMoves - 1
+            });
+        }
     }
 
     /** Render the carousel. */
@@ -90,26 +104,9 @@ export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T 
                     style={{height: this.props.contentSize.height, width: this.props.contentSize.width}}
                     data-component="vibe-carousel-content">
                     <div
-                        data-component="container"
-                        style={{
-                        height: this.slideComponentHeight }}>
-                        <div data-component="handler">
-                            <Motion
-                                style={{
-                                transform: spring(this.state.offset) }}>
-                                {style => (
-                                        <div
-                                            ref={i => this.content = i}
-                                            data-component="content-list"
-                                            style={{
-                                            transform: `translateX(-${style.transform}px)` }}>
-                                            {this.props.list.map(e => this.renderSlideComponent(e))}
-                                        </div>
-                                    )
-                                }
-                            </Motion>
-                        </div>
-
+                        ref={i => this.content = i}
+                        data-component="content-list">
+                        {this.props.list.map(e => this.renderSlideComponent(e))}
                     </div>
                 </div>
                 <VibeIconButton
@@ -133,7 +130,38 @@ export class VibeCarousel < T > extends React.Component < VibeCarouselProps < T 
 
     renderSlideComponent(data) {
         const Line = this.props.SlideComponent;
-        return <div data-component="item" ref={(i) => this.getSlideComponentHeight(i)}><Line data={data} {...this.props.componentProps}/></div>;
+        
+        const test: React.CSSProperties = {justifyContent: "center", flexDirection: "column", alignItems: "center"}
+
+        const paperStyle = {
+            width: "100%",
+            height: "100%",
+            flex: "1 0 100%",
+            marginRight: "15px",
+            padding: 20,
+            textAlign: 'center',
+            display: 'flex',
+            ...test
+        };
+
+        return(
+            <Motion
+                style={{
+                transform: spring(this.state.offset) }}>
+                {style => (
+                    <Paper style={{...paperStyle, transform: `translateX(-${style.transform}px)`}} zDepth={2}>
+                        <h4 className="music-title">{data.name}</h4>
+                        <img className="music-image" src={require("../../../assets/images/unnamed.jpg")} />
+                        <div 
+                            data-component="item"
+                            ref={(i) => this.getSlideComponentHeight(i)} >
+                                <Line data={data} {...this.props.componentProps}/>
+                        </div>
+                    </Paper>
+                    )
+                }
+            </Motion>
+        );
     }
 
     getSlideComponentHeight(div) {

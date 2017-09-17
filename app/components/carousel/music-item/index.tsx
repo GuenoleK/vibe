@@ -4,14 +4,14 @@ import "./style.scss";
 interface AudioMediaCarouselItemProps {
     data: {
         url: string;
-        displayText: string
+        name: string;
+        comment?: string;
     }
 }
 
 /** Music Carousel Item component */
 export class AudioMediaCarouselItem extends React.Component<AudioMediaCarouselItemProps, {}> {
     render() {
-        console.log("ELEMENT", this.props.data);
         return(
             <div data-component="audio-media-item">
                 <audio controls preload="metadata">

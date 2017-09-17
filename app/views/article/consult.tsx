@@ -48,22 +48,22 @@ ArticleConsultViewState > {
     list = [
         {
             name: "Ténor",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
+            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
             img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
             comments: "Ténor"
         }, {
             name: "Soprano",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
+            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
             img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
             comments: "Soprano"
         }, {
             name: "Alto",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
+            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
             img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
             comments: "Alto"
         }, {
             name: "Tous",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
+            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
             img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
             comments: "Tous"
         }
@@ -102,7 +102,7 @@ ArticleConsultViewState > {
             padding: 20,
             textAlign: 'center',
             display: 'flex',
-            justifyContent: test.justifyContent
+            justifyContent: test.justifyContent,
           };
 
         return (
@@ -123,30 +123,35 @@ ArticleConsultViewState > {
                 </div>
 
                 <div className="song-carousel">
-                    <Paper style={style} zDepth={2}>
-                    <VibeCarousel
-                        contentSize={{
-                        height: "59%",
-                        width: 70
-                    }}
-                        list={[
-                            {
-                                url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
-                                displayText: "Soprano"
-                            }, {
-                                url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
-                                displayText: "Ténor"
-                            }, {
-                                url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
-                                displayText: "ALto"
-                            }, {
-                                url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnOWFBOWppV0hBUTQ&export=download",
-                                displayText: "Tous"
-                            }
-                        ]}
-                    SlideComponent={AudioMediaCarouselItem}/>
-                        {/* <MusicList list={this.list} /> */}
-                    </Paper>
+                    <div style={style}>
+                        <VibeCarousel
+                            contentSize={{
+                                height: "59%",
+                                width: 70
+                            }}
+                            list = {[
+                                {
+                                    url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
+                                    name: "Soprano",
+                                    comment: ""
+                                }, {
+                                    url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
+                                    name: "Ténor",
+                                    comment: ""
+                                }, {
+                                    url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
+                                    name: "ALto",
+                                    comment: ""
+                                }, {
+                                    url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
+                                    name: "Tous",
+                                    comment: ""
+                                }
+                            ]}
+                            SlideComponent={AudioMediaCarouselItem}/>
+                            {/* <MusicList list={this.list} /> */}
+
+                    </div>
                 </div>
             </div>
         );
