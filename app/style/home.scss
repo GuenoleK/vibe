@@ -1,0 +1,48 @@
+.home-container {
+    height: 100%;
+    padding-bottom: 55px;
+
+    #home-cards-container-empty {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            color: grey;
+            font-size: 50px;
+        }
+    }
+
+    #home-cards-container {
+        height: 100%;
+        padding-top: 84px;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 25px;
+        display: flex;
+        flex-wrap:wrap;
+        margin-right: auto;
+        margin-left: auto;
+        width: 80%;
+
+        [data-vibe="card"] {
+            padding: 10px;
+            padding-bottom: 20px !important;
+            width: calc(100% * (1/5) - 10px - 1px);
+            max-width: 386.237px;
+            flex-grow: 1;
+            display: inline-block;
+            min-width: 300px;
+
+            .card-overlay {
+                height: 70px;
+            }
+
+            .card-text {
+                min-height: 50px;
+                max-height: 50px;
+            }
+        }
+    }
+}

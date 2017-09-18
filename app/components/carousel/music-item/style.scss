@@ -1,0 +1,10 @@
+$screenshot-item-height: 200px;
+$screenshot-item-width: 300px;
+
+///AUDIO CAROUSEL ITEM
+div[data-component="audio-media-item"] {
+
+    .react-h5-audio-player {
+        min-width: 200px;
+    }
+}

@@ -1,0 +1,25 @@
+.login-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    .login-text-field {
+    }
+
+    .login-instruction-text {
+        color: #808080;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+
+    .login-card {
+        width: 350px;
+
+        * {
+            display: block;
+        }
+    }
+}

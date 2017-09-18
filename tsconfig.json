@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "build",
+    "module": "es6",
+    "target": "es6",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "types": [
+      "i18next",
+      "node"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "webpack-dev-server.config"
+  ]
+}

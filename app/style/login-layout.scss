@@ -1,0 +1,20 @@
+.login-layout {
+    height: 100%;
+
+    .login-bar {
+        height: 108px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .login-header-title {
+            font-size: 11px;
+            padding-bottom: 10px;
+        }
+
+        .login-header-pitch {
+            font-size: 15px;
+        }
+    }
+}
