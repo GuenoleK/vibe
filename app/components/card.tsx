@@ -9,11 +9,11 @@ interface VibeCardProps {
     buttonsProps: {
         primary?: {
             label: string;
-            action: Function;
+            action?: Function;
         },
         secondary?: {
             label: string;
-            action: Function;
+            action?: Function;
         }
     }
 }
@@ -32,7 +32,7 @@ export class VibeCard extends React.Component<VibeCardProps, {}> {
                         {file.description}
                     </CardText>
                     <CardActions>
-                        <FlatButton label={i18next.t(buttonsProps.primary.label)} onClick={() => buttonsProps.primary.action(file.id)} />
+                        <FlatButton href={`https://drive.google.com/uc?id=${file.id}&export=download`} label={i18next.t(buttonsProps.primary.label)} />
                         <FlatButton label={i18next.t(buttonsProps.secondary.label)} onClick={() => buttonsProps.secondary.action(file.id)}/>
                     </CardActions>
                 </Card>

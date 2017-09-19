@@ -8,8 +8,8 @@ export class GDriveAPI {
     _fileList = [];
     
     // Client ID and API key from the Developer Console
-    get CLIENT_ID() {return '368161403578-nbcekh8dfui30up5muhp2bkvob6rvsne.apps.googleusercontent.com';}
-    get API_KEY() {return 'AIzaSyDnxv91bVQMD2Gyd6gj-ptKKdOx40uF1b8'};
+    get CLIENT_ID() {return '476197073951-r1kibqpebr9ui6abhn4gfesjsajpfu0l.apps.googleusercontent.com';}
+    get API_KEY() {return 'AIzaSyAjRH1KvVOYYcbBnskRAoL24e9SL0BTUfM'};
 
     // Array of API discovery doc URLs for APIs used by the quickstart
     get DISCOVERY_DOCS() {return ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];}
@@ -78,11 +78,9 @@ export class GDriveAPI {
      * Get file list from folder and set component list.
      */
     listFiles = () => {
-        const id ="0BzK7hmJUEgKnem1QWjlfTFhYSGs";
+        const id ="0B_BNBXktTj8RMzM2Z3AtNVY0c3M";
 
         const {fileList} = this._sentComponent.state.fileList;
-
-        console.log("this._sentComponent.state", this._sentComponent.state);
 
         this._sentComponent.setState({isLoading: true}, () => {
             setTimeout(() => {
@@ -99,7 +97,6 @@ export class GDriveAPI {
                         }).then(resp => resp.result.files).then(files => {
                             files.forEach(file => {
                                 if(file.name.split(".")[1] === "pdf") {
-                                    console.log("FILE", file);
                                     this._fileList.push(file);
                                     const sentList = fileList ==! undefined ? [...fileList, this._fileList] : [...this._fileList]
                                     this._sentComponent.setState({fileList: orderBy(sentList, ["name"]), isLoading: false});

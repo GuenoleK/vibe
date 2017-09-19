@@ -33,10 +33,6 @@ export class HomeView extends React.Component<HomeViewProps, HomeViewState> {
         } else this.props.router.push('/');
     }
 
-    downloadArticle = (id) => {
-        console.log('Downloading articles n°',  id);
-    }
-
     consultArticle = (id) => {
         this.props.router.push(`article/${id}`);
     }
@@ -51,7 +47,7 @@ export class HomeView extends React.Component<HomeViewProps, HomeViewState> {
                     <VibeCard
                         file={file} key={file.id}
                         buttonsProps={{
-                            primary: {label: 'button.download', action: this.downloadArticle}, secondary: {label: "button.consult", action: this.consultArticle}
+                            primary: {label: 'button.download'}, secondary: {label: "button.consult", action: this.consultArticle}
                         }} />
                 )
             })
@@ -66,7 +62,6 @@ export class HomeView extends React.Component<HomeViewProps, HomeViewState> {
     }
 
     render() {
-        console.log("FILE LIST", this.state.fileList);
         return (
             <div className='home-container'>
                 {this.renderCards()}
