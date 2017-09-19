@@ -21,6 +21,7 @@ import "./article-consult.scss";
 import {VibeCarousel} from '../../components/carousel/index';
 import {AudioMediaCarouselItem} from '../../components/carousel/music-item/index';
 import {MusicList} from './music-list';
+import {GDriveAPI} from '../../actions/google-drive-api';
 
 interface ArticleConsultViewProps {
     router?: InjectedRouter;
@@ -31,6 +32,8 @@ interface ArticleConsultViewState {
     article : any;
     isShown : boolean;
     downloadButtonClassName : string;
+    fileList: any[];
+
 }
 
 export class ArticleConsultationView extends React.Component < ArticleConsultViewProps,
@@ -41,41 +44,18 @@ ArticleConsultViewState > {
         this.state = {
             article: null,
             isShown: false,
-            downloadButtonClassName: "download-button"
+            downloadButtonClassName: "download-button",
+            fileList: []
         };
     }
 
-    list = [
-        {
-            name: "Ténor",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
-            img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
-            comments: "Ténor"
-        }, {
-            name: "Soprano",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
-            img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
-            comments: "Soprano"
-        }, {
-            name: "Alto",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
-            img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
-            comments: "Alto"
-        }, {
-            name: "Tous",
-            src: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
-            img: "https://assets.hauteculture.com/uploads/22781/500x500.16661100405919a6eba2c67.png",
-            comments: "Tous"
-        }
-    ];
-
     componentDidMount() {
         if (!localStorage.getItem('user')) {
-            this
-                .props
-                .router
-                .push('/');
+            this.props.router.push('/');
         }
+        const gDriveAPI = new GDriveAPI(this, "loadMusics");
+        gDriveAPI.loadDriveApi();
+
         window.scrollTo(0, 0);
         setTimeout(() => {
             this.setState({
@@ -93,7 +73,6 @@ ArticleConsultViewState > {
     }
 
     render() {
-
         const test: React.CSSProperties = {justifyContent: "center"}
 
         const style = {
@@ -129,25 +108,7 @@ ArticleConsultViewState > {
                                 height: "59%",
                                 width: 70
                             }}
-                            list = {[
-                                {
-                                    url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
-                                    name: "Soprano",
-                                    comment: ""
-                                }, {
-                                    url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
-                                    name: "Ténor",
-                                    comment: ""
-                                }, {
-                                    url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
-                                    name: "ALto",
-                                    comment: ""
-                                }, {
-                                    url: "https://drive.google.com/uc?id=0BzK7hmJUEgKnYTE5ZWpjVmREc1E&export=download",
-                                    name: "Tous",
-                                    comment: ""
-                                }
-                            ]}
+                            list={this.setFileList()}
                             SlideComponent={AudioMediaCarouselItem}/>
                             {/* <MusicList list={this.list} /> */}
 
@@ -155,5 +116,17 @@ ArticleConsultViewState > {
                 </div>
             </div>
         );
+    }
+
+    setFileList() {
+        let listToSend = [];
+        this.state.fileList.forEach(file => {
+            listToSend.push({
+                url: `https://drive.google.com/uc?id=${file.id}&export=download`,
+                name: file.name.split(".")[0],
+                comment: file.description
+            })
+        })
+        return listToSend;
     }
 }

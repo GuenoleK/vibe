@@ -29,7 +29,6 @@ export class HomeView extends React.Component<HomeViewProps, HomeViewState> {
     componentDidMount() {
         if(localStorage.getItem('user')) {
             const gDriveAPI = new GDriveAPI(this, "loadList");
-            
             gDriveAPI.loadDriveApi();
         } else this.props.router.push('/');
     }
@@ -45,8 +44,9 @@ export class HomeView extends React.Component<HomeViewProps, HomeViewState> {
     renderCards = () => {
         const {articles, isLoading, fileList} = this.state;
         const articlesArray = [];
-        if(fileList[0] && fileList[0].length > 0) {
-            fileList[0].forEach(file => {
+        
+        if(fileList.length > 0) {
+            fileList.forEach(file => {
                 articlesArray.push(
                     <VibeCard
                         file={file} key={file.id}
@@ -66,6 +66,7 @@ export class HomeView extends React.Component<HomeViewProps, HomeViewState> {
     }
 
     render() {
+        console.log("FILE LIST", this.state.fileList);
         return (
             <div className='home-container'>
                 {this.renderCards()}

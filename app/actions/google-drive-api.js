@@ -1,8 +1,11 @@
+import {orderBy} from "lodash";
+
 export class GDriveAPI {
 
     _sentComponent;
     _loadFunction;
-    _fileId
+    _fileId;
+    _fileList = [];
     
     // Client ID and API key from the Developer Console
     get CLIENT_ID() {return '368161403578-nbcekh8dfui30up5muhp2bkvob6rvsne.apps.googleusercontent.com';}
@@ -53,6 +56,9 @@ export class GDriveAPI {
             case "loadList" :
                 this.listFiles();
                 break;
+            case "loadMusics":
+                this.loadMusics();
+                break;
             default:
                 console.warn("Not supported function. SENT FUNCTION NAME", this._loadFunction);
           }
@@ -72,19 +78,62 @@ export class GDriveAPI {
      * Get file list from folder and set component list.
      */
     listFiles = () => {
+        const id ="0BzK7hmJUEgKnem1QWjlfTFhYSGs";
+
+        const {fileList} = this._sentComponent.state.fileList;
+
+        console.log("this._sentComponent.state", this._sentComponent.state);
+
         this._sentComponent.setState({isLoading: true}, () => {
             setTimeout(() => {
                 gapi.client.drive.files.list({
-                    'pageSize': 100,
-                    q: "parents in '0BzK7hmJUEgKnem1QWjlfTFhYSGs'",
-                    'fields': "nextPageToken, files(id, name, parents, description)"
-                  })
-                    .then((response) => { return response.result.files})
-                        .then(file => {
-                            this._sentComponent.setState({fileList: [file], isLoading: false});
-                          });
+                    pageSize: 100,
+                    q: `parents in '${id}'`,
+                    fields: "nextPageToken, files(id, name, parents, description)"
+                  }).then(response => response.result.files).then(folders => {
+                    folders.forEach(folder => {
+                        gapi.client.drive.files.list({
+                            pageSize: 100,
+                            q: `parents in '${folder.id}'`,
+                            fields: "nextPageToken, files(id, name, parents, description)"
+                        }).then(resp => resp.result.files).then(files => {
+                            files.forEach(file => {
+                                if(file.name.split(".")[1] === "pdf") {
+                                    console.log("FILE", file);
+                                    this._fileList.push(file);
+                                    const sentList = fileList ==! undefined ? [...fileList, this._fileList] : [...this._fileList]
+                                    this._sentComponent.setState({fileList: orderBy(sentList, ["name"]), isLoading: false});
+                                }
+                            })
+                        });
+                    });
+                });
             }, 500);
         });
+    }
+
+    loadMusics() {
+        const {id} = this._sentComponent.props.params;
+        const {fileList} = this._sentComponent.state;
+
+        const request = gapi.client.drive.files.get({
+            fileId: id,
+            fields: "parents"
+        }).execute(file => {
+            gapi.client.drive.files.list({
+                pageSize: 100,
+                q: `parents in '${file.parents[0]}'`,
+                fields: "nextPageToken, files(id, name, parents, description)"
+            }).then(resp => resp.result.files).then(files => {
+                files.forEach(file => {
+                    if(file.name.split(".")[1] === "mp3") {
+                        this._fileList.push(file);
+                        const sentList = fileList ==! undefined ? [...fileList, this._fileList] : [...this._fileList]
+                        this._sentComponent.setState({fileList: orderBy(sentList, ["name"]), isLoading: false});
+                    }
+                })
+            });
+        })
     }
 
     downloadFile = () => {
